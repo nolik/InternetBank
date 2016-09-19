@@ -11,11 +11,11 @@
 <html>
 <head>
     <title>MainJSP</title>
-    <h3>Региональные установки и Время</h>
-        <FORM action="Controller.java" method="GET">
-            <INPUT type="submit" value="На главную">
+    <h3>Welcom to the bank account page!</h3>
+        <FORM action="/controller" method="GET">
+            <INPUT type="submit" value="GO to the login page">
 
-</head>
+            </FORM>
 <body>
 
 </body>
