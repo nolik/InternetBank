@@ -11,29 +11,28 @@
     <title>Internet Banking</title>
 </head>
 <body>
-<b> Welcom to Internet Banking </b>
+<b> Welcome to Internet Banking!</b>
 
-<h4>Current time:</h4> <jsp:useBean id="gc" class="java.util.GregorianCalendar"/>
+<h4>Current time:</h4>
+<jsp:useBean id="gc" class="java.util.GregorianCalendar"/>
 <jsp:getProperty name="gc" property="time"/>
 
 <h3>Please Logg In:</h3>
-<form method="post" action="/controller">
+<form method="POST" action="/LoginController">
     <table>
         <tr>
             <td><b>Login:</b></td>
             <td>
-                <input name="Login" type="text" size=40></td>
+                <input name="login" type="text" size=40></td>
         </tr>
         <tr>
             <td><b>Password:</b></td>
             <td>
-                <input name="Password" type="text" size=40></td>
+                <input name="password" input type="password"  size=40></td>
         </tr>
 
-
     </table>
-    <FORM action="/controller" method="POST">
-        <INPUT type="submit" value="Loggin">
-    </FORM>
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
 </body>
 </html>
