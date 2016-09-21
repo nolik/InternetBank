@@ -31,9 +31,9 @@ public class LoginController extends HttpServlet {
          */
         UserMock userMock = new UserMock("nolik", "123");
 
-        String login = String.valueOf(req.getAttribute("login"));
-        String password = String.valueOf(req.getAttribute("password"));
-
+        String login = String.valueOf(req.getParameter("login"));
+        String password = String.valueOf(req.getParameter("password"));
+        logger.info("authorisation information from Attribute login=%s Attribute password=%S"+login+password);
 
 
         if ( login.equals(userMock.getLogin())
