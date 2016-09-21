@@ -7,12 +7,13 @@
           <element id="module-output" name="InternetBanking" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
-          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
-          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
           <element id="archive" name="InternetBanking-0.1.jar">
             <element id="module-output" name="InternetBanking" />
           </element>
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">
