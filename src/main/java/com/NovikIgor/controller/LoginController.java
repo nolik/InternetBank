@@ -1,6 +1,6 @@
 package com.NovikIgor.controller;
 
-import com.NovikIgor.dao.mock.Roles;
+import com.NovikIgor.dao.mock.ClientType;
 import com.NovikIgor.dao.mock.UserMock;
 import org.apache.log4j.Logger;
 
@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
 
         if ( login.equals(userMock.getLogin())
                 && password.equals(userMock.getPassword()) ){
-            req.setAttribute("role", Roles.AuthorisedUser);
+            req.setAttribute("role", ClientType.GUEST);
             req.getRequestDispatcher("/main.jsp").forward(req, resp);
             logger.info("authorisation of user %s from index.jsp"+ userMock.getLogin());
         }

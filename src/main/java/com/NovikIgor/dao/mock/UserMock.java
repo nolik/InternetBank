@@ -7,7 +7,7 @@ package com.NovikIgor.dao.mock;
 public class UserMock {
     private String login;
     private String password;
-    private Roles role;
+    private ClientType role;
 
     public UserMock(String login, String password) {
         this.login = login;
@@ -30,11 +30,11 @@ public class UserMock {
         this.password = password;
     }
 
-    public Roles getRole() {
+    public ClientType getRole() {
         return role;
     }
 
-    public void setRole(Roles role) {
+    public void setRole(ClientType role) {
         this.role = role;
     }
 }
