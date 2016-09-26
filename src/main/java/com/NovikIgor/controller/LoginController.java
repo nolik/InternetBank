@@ -3,11 +3,12 @@ package com.NovikIgor.controller;
 import com.NovikIgor.dao.mock.ClientType;
 import com.NovikIgor.dao.mock.UserMock;
 import org.apache.log4j.Logger;
-
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Locale;
 
@@ -17,7 +18,7 @@ import java.util.Locale;
  * Created by nolik on 15.09.16.
  */
 
-
+@WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 
     private static Logger logger = Logger.getLogger(LoginController.class);
@@ -33,17 +34,18 @@ public class LoginController extends HttpServlet {
 
         String login = String.valueOf(req.getParameter("login"));
         String password = String.valueOf(req.getParameter("password"));
-        logger.info("authorisation information from Attribute login=%s Attribute password=%S"+login+password);
+        logger.info("authorisation information from Attribute login=%s Attribute password=%S" + login + password);
+        HttpSession session = req.getSession();
 
+        if (login.equals(userMock.getLogin())
+                && password.equals(userMock.getPassword())) {
 
-        if ( login.equals(userMock.getLogin())
-                && password.equals(userMock.getPassword()) ){
-            req.setAttribute("role", ClientType.GUEST);
+            session.setAttribute("role", ClientType.CLIENT);
             req.getRequestDispatcher("/main.jsp").forward(req, resp);
-            logger.info("authorisation of user %s from index.jsp"+ userMock.getLogin());
-        }
-        else {
-            req.getRequestDispatcher("/loginError.jsp").forward(req,resp);
+            logger.info("authorisation of user %s from index.jsp" + userMock.getLogin());
+        } else {
+            session.setAttribute("role", ClientType.GUEST);
+            req.getRequestDispatcher("/loginError.jsp").forward(req, resp);
             logger.info("go to loginError.jsp from authorisation mechanism");
         }
 

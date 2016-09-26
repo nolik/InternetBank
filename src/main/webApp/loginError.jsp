@@ -11,7 +11,7 @@
     <title>Login Error</title>
 </head>
 <body>
-<c:url var="url" value="/index.jsp"/>
+<c:url var="url" value="${pageContext.request.contextPath}/index.jsp"/>
 <h2>Invalid user name or password.</h2>
 
 <p>Please enter a user name or password that is authorized to access this

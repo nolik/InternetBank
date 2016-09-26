@@ -1,6 +1,7 @@
 package com.NovikIgor.controller.filter;
 
 import com.NovikIgor.dao.mock.ClientType;
+import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -13,10 +14,12 @@ import java.io.IOException;
  * <p>
  * Created by Novik Igor on 22.09.2016.
  */
+
 public class ServletSecurityFilter implements Filter {
+    private static Logger logger = Logger.getLogger(Filter.class);
 
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        logger.info("REQUEST GO THROUGH ServletSecurityFilter");
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -27,7 +30,7 @@ public class ServletSecurityFilter implements Filter {
 
         if (clientType == null) {
             session.setAttribute("role", ClientType.GUEST);
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            req.getRequestDispatcher("/inex.jsp").forward(req, resp);
             return;
         }
         filterChain.doFilter(req, resp);

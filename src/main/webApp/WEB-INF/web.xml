@@ -6,6 +6,7 @@
          metadata-complete="true">
 
     <display-name>Archetype Created Web Application</display-name>
+
     <servlet>
         <servlet-name>EntryServlet</servlet-name>
         <servlet-class>com.NovikIgor.controller.LoginController</servlet-class>
