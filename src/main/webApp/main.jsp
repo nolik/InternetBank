@@ -12,7 +12,7 @@
 <head>
     <title>MainJSP</title>
     <h3>Welcom to the bank account page!</h3>
-        <FORM action="${pageContext.request.contextPath}/LoginController" method="GET">
+        <FORM action="${pageContext.request.contextPath}/сontroller" method="GET">
             <INPUT type="submit" value="GO to the login page">
 
             </FORM>

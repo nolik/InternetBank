@@ -9,11 +9,11 @@
 
     <servlet>
         <servlet-name>EntryServlet</servlet-name>
-        <servlet-class>com.NovikIgor.controller.LoginController</servlet-class>
+        <servlet-class>com.NovikIgor.controller.Controller</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>EntryServlet</servlet-name>
-        <url-pattern>/LoginController</url-pattern>
+        <url-pattern>/сontroller</url-pattern>
     </servlet-mapping>
 
     <filter>

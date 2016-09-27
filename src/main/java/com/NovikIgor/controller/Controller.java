@@ -3,6 +3,7 @@ package com.NovikIgor.controller;
 import com.NovikIgor.dao.mock.ClientType;
 import com.NovikIgor.dao.mock.UserMock;
 import org.apache.log4j.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +19,11 @@ import java.util.Locale;
  * Created by nolik on 15.09.16.
  */
 
-@WebServlet("/LoginController")
-public class LoginController extends HttpServlet {
+@WebServlet("/Controller")
+public class Controller extends HttpServlet {
+    private static final long serialVersionUID = -4051736549894026861L;
 
-    private static Logger logger = Logger.getLogger(LoginController.class);
+    private static Logger logger = Logger.getLogger(Controller.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -58,4 +60,44 @@ public class LoginController extends HttpServlet {
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
         logger.info("doGet to index.jsp");
     }
+
+    /**
+     * This method it's point of entry for servlet in  Command Factory pattern
+     * for implementation of different commands realization through one servlet.
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void processRequest(HttpServletRequest request,
+                                HttpServletResponse response) throws ServletException, IOException {
+        String page = null;
+        HttpSession session = request.getSession(true);
+        session.setMaxInactiveInterval(3000);
+        if (session.isNew()) {
+            session.setAttribute("role", String.valueOf(ClientType.GUEST));
+        }
+/*        // definition of the command, which came from a JSP
+        ActionFactory client = new ActionFactory();
+        ActionCommand command = client.defineCommand(request);
+
+		 * Call to implement execute () method and passing parameters
+		 * Class-specific command handler
+		 *
+        page = command.execute(request);
+        if (page != null) {
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher(page);
+            // Call the page response to the request
+            dispatcher.forward(request, response);
+        } else {
+            page = ConfigurationManager.getProperty("path.page.index");
+            request.getSession().setAttribute("nullPage",
+                    MessageManager.getProperty("message.nullpage"));
+            response.sendRedirect(request.getContextPath() + page); */
+    }
+
+
+
 }

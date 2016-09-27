@@ -18,7 +18,7 @@
 <jsp:getProperty name="gc" property="time"/>
 
 <h3>Please Logg In:</h3>
-<form method="POST" action="${pageContext.request.contextPath}/LoginController">
+<form method="POST" action="${pageContext.request.contextPath}/сontroller">
     <table>
         <tr>
             <td><b>Login:</b></td>
