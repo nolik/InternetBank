@@ -1,5 +1,7 @@
 package com.NovikIgor.dao.mock;
 
+import com.NovikIgor.dao.entity.ClientType;
+
 /**
  * Created by Novik Igor on 20.09.2016.
  */

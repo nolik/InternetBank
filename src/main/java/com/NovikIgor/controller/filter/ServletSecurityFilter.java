@@ -1,6 +1,6 @@
 package com.NovikIgor.controller.filter;
 
-import com.NovikIgor.dao.mock.ClientType;
+import com.NovikIgor.dao.entity.ClientType;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;

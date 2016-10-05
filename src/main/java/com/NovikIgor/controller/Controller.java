@@ -1,6 +1,6 @@
 package com.NovikIgor.controller;
 
-import com.NovikIgor.dao.mock.ClientType;
+import com.NovikIgor.dao.entity.ClientType;
 import com.NovikIgor.dao.mock.UserMock;
 import org.apache.log4j.Logger;
 

@@ -1,4 +1,4 @@
-package com.NovikIgor.dao.mock;
+package com.NovikIgor.dao.entity;
 
 /**
  * Created by Novik Igor on 20.09.2016.
