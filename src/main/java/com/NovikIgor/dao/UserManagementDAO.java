@@ -13,6 +13,6 @@ import java.util.List;
 public interface UserManagementDAO {
     public List<User> getAllUsers() throws UserNotFoundException;
 
-    public User getUsersByElement(String element, String elementValue) throws UserNotFoundException;
+    public User getUsersByLogin(String login) throws UserNotFoundException;
 
 }
