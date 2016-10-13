@@ -2,11 +2,8 @@ package com.NovikIgor.dao.pool;
 
 import org.apache.log4j.Logger;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -17,25 +14,18 @@ import java.sql.Statement;
  * Created by Novik Igor on 06.10.2016.
  */
 public class ConnectionPool {
-    private static final String DATASOURCE_NAME = "jdbc/internetBanking";
-    private static DataSource dataSource;
-    private static final Logger logger = Logger.getLogger(ConnectionPool.class);
+    private static final String URL = "jdbc:mysql://localhost:3306/InternetBanking";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "novik03";
 
-    static {
-        try {
-            Context initContext = new InitialContext();
-            Context envContext = (Context) initContext.lookup("java:/comp/env");
-            dataSource = (DataSource) envContext.lookup(DATASOURCE_NAME);
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-    }
+    private static final Logger logger = Logger.getLogger(ConnectionPool.class);
 
     private ConnectionPool() {
     }
 
-    public static Connection getConnection() throws SQLException {
-        Connection connection = dataSource.getConnection();
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         return connection;
     }
 
