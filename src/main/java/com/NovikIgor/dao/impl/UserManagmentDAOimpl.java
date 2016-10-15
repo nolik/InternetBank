@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class UserManagmentDAOimpl implements UserManagementDAO {
 
-    private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM Users";
-    private static final String SQL_SELECT_ALL_USERS_BY_ID = "SELECT * FROM Users WHERE login=?";
+    private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM InternetBanking.Users";
+    private static final String SQL_SELECT_ALL_USERS_BY_ID = "SELECT * FROM InternetBanking.Users WHERE login=?";
 
     private static final Logger logger = Logger.getLogger(UserManagmentDAOimpl.class);
 
@@ -57,31 +57,46 @@ public class UserManagmentDAOimpl implements UserManagementDAO {
         Connection conn = null;
         PreparedStatement state = null;
         User user = null;
+
         try {
             logger.info("Here will be get connection!");
             conn = ConnectionPool.getConnection();
             logger.info("Connection recieved!");
+
             state = conn.prepareStatement(SQL_SELECT_ALL_USERS_BY_ID);
-            state.setString(1,login);
+            state.setString(1, login);
+
+            //test using exzactly statment
+            // Statement statement = conn.createStatement();
+
+
             logger.info(state.toString());
-            ResultSet rs = state.executeQuery();
-            logger.info("vipolneno");
+            logger.info("try to execute SQLQuery");
+            //   ResultSet rs =  statement.executeQuery("SELECT * FROM InternetBanking.Users WHERE login='nolik'");
+           ResultSet rs = state.executeQuery();
+            logger.info("successful");
 
-            user = new User();
-            user.setLogin(rs.getString(1));
-            user.setPassword(rs.getString(2));
-            user.setRole(rs.getString(3));
-            user.setFirstName(rs.getString(4));
-            user.setLastName(rs.getString(5));
+            while (rs.next()) {
+                user = new User();
+                user.setLogin(rs.getString(1));
+                user.setPassword(rs.getString(2));
+                user.setRole(rs.getString(3));
+                user.setFirstName(rs.getString(4));
+                user.setLastName(rs.getString(5));
+                logger.info("find a user"+user.toString());
+                return user;
+            }
 
+            logger.info("in UserManagmentDAOimpl all ok, if don't start rs.getString()");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             throw new DatabaseException(e);
         } finally {
-
             ConnectionPool.close(state);
             ConnectionPool.close(conn);
         }
         return user;
     }
+
+
 }

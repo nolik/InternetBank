@@ -1,7 +1,8 @@
 package com.NovikIgor.controller;
 
 import com.NovikIgor.dao.entity.ClientType;
-import com.NovikIgor.dao.mock.UserMock;
+import com.NovikIgor.dao.impl.UserManagmentDAOimpl;
+import com.NovikIgor.dto.User;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -28,25 +29,23 @@ public class Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("loc", Locale.getDefault());
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
+        User user = null;
 
-        /**
-         * This is testing Moc for Login Form -> check index.jsp
-         */
-        UserMock userMock = new UserMock("nolik", "123");
 
-        String login = String.valueOf(req.getParameter("login"));
-        String password = String.valueOf(req.getParameter("password"));
-        logger.info("authorisation information from Attribute login=%s Attribute password=%S" + login + password);
-        HttpSession session = req.getSession();
+            UserManagmentDAOimpl session = new UserManagmentDAOimpl();
+            user = session.getUsersByLogin(login);
+            logger.info("User by login returned form DAO");
 
-        if (login.equals(userMock.getLogin())
-                && password.equals(userMock.getPassword())) {
-
-            session.setAttribute("role", ClientType.CLIENT);
+        logger.info("authorisation information from Attribute login=" + login + "Attribute password=%s" + password);
+        HttpSession session1 = req.getSession();
+        if(user != null && login.equals(user.getLogin()) && password.equals(user.getPassword())) {
+            session1.setAttribute("role", ClientType.CLIENT);
             req.getRequestDispatcher("/main.jsp").forward(req, resp);
-            logger.info("authorisation of user %s from index.jsp" + userMock.getLogin());
+            logger.info("authorisation of user %s from index.jsp" + user.getLogin());
         } else {
-            session.setAttribute("role", ClientType.GUEST);
+            session1.setAttribute("role", ClientType.GUEST);
             req.getRequestDispatcher("/loginError.jsp").forward(req, resp);
             logger.info("go to loginError.jsp from authorisation mechanism");
         }
