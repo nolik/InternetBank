@@ -1,5 +1,7 @@
 package com.NovikIgor.controller;
 
+import com.NovikIgor.dao.DAOException.UserNotFoundException;
+import com.NovikIgor.dao.UserManagementDAO;
 import com.NovikIgor.dao.entity.ClientType;
 import com.NovikIgor.dao.impl.UserManagmentDAOimpl;
 import com.NovikIgor.dto.User;
@@ -34,9 +36,13 @@ public class Controller extends HttpServlet {
         User user = null;
 
 
-            UserManagmentDAOimpl session = new UserManagmentDAOimpl();
+            UserManagementDAO session = new UserManagmentDAOimpl();
+        try {
             user = session.getUsersByLogin(login);
-            logger.info("User by login returned form DAO");
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        }
+        logger.info("User by login returned form DAO");
 
         logger.info("authorisation information from Attribute login=" + login + "Attribute password=%s" + password);
         HttpSession session1 = req.getSession();
