@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
  */
 public class MessageManager {
     private final static ResourceBundle resourceBundle = ResourceBundle
-            .getBundle("resources.messages", Locale.getDefault());
+            .getBundle("messages", Locale.getDefault());
 
     // class extract information from file messages.properties
     private MessageManager() {

@@ -6,9 +6,7 @@ import com.NovikIgor.dao.pool.ConnectionPool;
 import com.NovikIgor.dto.User;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,6 +15,7 @@ import java.util.List;
  */
 public class UserManagmentDAOimpl implements UserManagementDAO {
 
+    private static final String SQL_CHECK_LOGIN_IN_DB = "SELECT * FROM InternetBanking.Users WHERE login=?";
     private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM InternetBanking.Users";
     private static final String SQL_SELECT_ALL_USERS_BY_ID = "SELECT * FROM InternetBanking.Users WHERE login=?";
 
@@ -66,14 +65,11 @@ public class UserManagmentDAOimpl implements UserManagementDAO {
             state = conn.prepareStatement(SQL_SELECT_ALL_USERS_BY_ID);
             state.setString(1, login);
 
-            //test using exzactly statment
-            // Statement statement = conn.createStatement();
-
 
             logger.info(state.toString());
             logger.info("try to execute SQLQuery");
             //   ResultSet rs =  statement.executeQuery("SELECT * FROM InternetBanking.Users WHERE login='nolik'");
-           ResultSet rs = state.executeQuery();
+            ResultSet rs = state.executeQuery();
             logger.info("successful");
 
             while (rs.next()) {
@@ -83,7 +79,7 @@ public class UserManagmentDAOimpl implements UserManagementDAO {
                 user.setRole(rs.getString(3));
                 user.setFirstName(rs.getString(4));
                 user.setLastName(rs.getString(5));
-                logger.info("find a user"+user.toString());
+                logger.info("find a user" + user.toString());
                 return user;
             }
 
@@ -96,6 +92,28 @@ public class UserManagmentDAOimpl implements UserManagementDAO {
             ConnectionPool.close(conn);
         }
         return user;
+    }
+
+    public boolean checkLogin(String login) {
+        Connection conn = null;
+        PreparedStatement state = null;
+        boolean haveLogin = false;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            state = conn.prepareStatement(SQL_CHECK_LOGIN_IN_DB, Statement.RETURN_GENERATED_KEYS);
+            state.setString(1, login);
+            ResultSet rs = state.executeQuery();
+            haveLogin = rs.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("SQLExp where checkLogin", e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return haveLogin;
     }
 
 

@@ -8,7 +8,7 @@ public enum CommandEnum {
 
     LOGIN {
         {
-            //this.command = new LoginCommand();
+            this.command = new LoginCommand();
         }
     },
 

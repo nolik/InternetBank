@@ -19,6 +19,7 @@
 
 <h3>Please Logg In:</h3>
 <form method="POST" action="${pageContext.request.contextPath}/сontroller">
+    <input type="hidden" name="command" value="login"/>
     <table>
         <tr>
             <td><b>Login:</b></td>
@@ -28,7 +29,7 @@
         <tr>
             <td><b>Password:</b></td>
             <td>
-                <input name="password" input type="password"  size=40></td>
+                <input name="password" input type="password" size=40></td>
         </tr>
 
     </table>

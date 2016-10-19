@@ -22,7 +22,9 @@ public class ServletSecurityFilter implements Filter {
         logger.info("REQUEST GO THROUGH ServletSecurityFilter");
     }
 
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest,
+                         ServletResponse servletResponse,
+                         FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         HttpSession session = req.getSession();
@@ -30,7 +32,7 @@ public class ServletSecurityFilter implements Filter {
 
         if (clientType == null) {
             session.setAttribute("role", ClientType.GUEST);
-            req.getRequestDispatcher("/inex.jsp").forward(req, resp);
+            req.getServletContext().getRequestDispatcher("/inex.jsp").forward(req, resp);
             return;
         }
         filterChain.doFilter(req, resp);

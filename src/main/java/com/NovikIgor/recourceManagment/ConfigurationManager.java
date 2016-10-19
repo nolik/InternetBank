@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
  */
 public class ConfigurationManager {
     private final static ResourceBundle resourceBundle = ResourceBundle
-            .getBundle("resources.config");
+            .getBundle("config");
 
     // class extract information from file config.properties
     private ConfigurationManager() {

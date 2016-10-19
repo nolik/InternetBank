@@ -1,12 +1,13 @@
 package com.NovikIgor.controller;
 
-import com.NovikIgor.dao.DAOException.UserNotFoundException;
-import com.NovikIgor.dao.UserManagementDAO;
+import com.NovikIgor.command.ActionCommand;
+import com.NovikIgor.command.ActionFactory;
 import com.NovikIgor.dao.entity.ClientType;
-import com.NovikIgor.dao.impl.UserManagmentDAOimpl;
-import com.NovikIgor.dto.User;
+import com.NovikIgor.recourceManagment.ConfigurationManager;
+import com.NovikIgor.recourceManagment.MessageManager;
 import org.apache.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,14 +30,19 @@ public class Controller extends HttpServlet {
     private static Logger logger = Logger.getLogger(Controller.class);
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req,
+                          HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("loc", Locale.getDefault());
-        String login = req.getParameter("login");
+        logger.info("Request came to the doPost methode and go to the processRequest");
+        String com = req.getParameter("command");
+        logger.info("command in request="+com);
+        processRequest(req, resp);
+       /* String login = req.getParameter("login");
         String password = req.getParameter("password");
         User user = null;
 
 
-            UserManagementDAO session = new UserManagmentDAOimpl();
+        UserManagementDAO session = new UserManagmentDAOimpl();
         try {
             user = session.getUsersByLogin(login);
         } catch (UserNotFoundException e) {
@@ -46,7 +52,7 @@ public class Controller extends HttpServlet {
 
         logger.info("authorisation information from Attribute login=" + login + "Attribute password=%s" + password);
         HttpSession session1 = req.getSession();
-        if(user != null && login.equals(user.getLogin()) && password.equals(user.getPassword())) {
+        if (user != null && login.equals(user.getLogin()) && password.equals(user.getPassword())) {
             session1.setAttribute("role", ClientType.CLIENT);
             req.getRequestDispatcher("/main.jsp").forward(req, resp);
             logger.info("authorisation of user %s from index.jsp" + user.getLogin());
@@ -54,14 +60,13 @@ public class Controller extends HttpServlet {
             session1.setAttribute("role", ClientType.GUEST);
             req.getRequestDispatcher("/loginError.jsp").forward(req, resp);
             logger.info("go to loginError.jsp from authorisation mechanism");
-        }
-
-
+        }*/
     }
 
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req,
+                         HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
         logger.info("doGet to index.jsp");
     }
@@ -75,22 +80,33 @@ public class Controller extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
+
     private void processRequest(HttpServletRequest request,
                                 HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         HttpSession session = request.getSession(true);
         session.setMaxInactiveInterval(3000);
         if (session.isNew()) {
-            session.setAttribute("role", String.valueOf(ClientType.GUEST));
+            session.setAttribute("role", ClientType.GUEST);
         }
-/*        // definition of the command, which came from a JSP
+        // definition of the command, which came from a JSP
         ActionFactory client = new ActionFactory();
+
+        logger.info("After Creation ActionFactory, try to recognize the command");
+
         ActionCommand command = client.defineCommand(request);
 
-		 * Call to implement execute () method and passing parameters
+        logger.info("After recogniz the command start to implement commnad - "
+                + command.toString() +
+                ", use the methode execute of this command");
+        /*
+         * Call to implement execute () method and passing parameters
 		 * Class-specific command handler
-		 *
+		 *  */
         page = command.execute(request);
+
+        logger.info("methode execute implemented and return page="+page);
+
         if (page != null) {
             RequestDispatcher dispatcher = getServletContext()
                     .getRequestDispatcher(page);
@@ -100,9 +116,9 @@ public class Controller extends HttpServlet {
             page = ConfigurationManager.getProperty("path.page.index");
             request.getSession().setAttribute("nullPage",
                     MessageManager.getProperty("message.nullpage"));
-            response.sendRedirect(request.getContextPath() + page); */
+            response.sendRedirect(request.getContextPath() + page);
+        }
     }
-
 
 
 }
