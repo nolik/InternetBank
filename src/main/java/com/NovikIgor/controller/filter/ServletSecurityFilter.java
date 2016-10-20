@@ -28,11 +28,11 @@ public class ServletSecurityFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         HttpSession session = req.getSession();
-        Object clientType =  session.getAttribute("role");
+        Object clientType = session.getAttribute("role");
 
         if (clientType == null) {
             session.setAttribute("role", ClientType.GUEST);
-            req.getServletContext().getRequestDispatcher("/inex.jsp").forward(req, resp);
+            req.getServletContext().getRequestDispatcher("/jsp/index.jsp").forward(req, resp);
             return;
         }
         filterChain.doFilter(req, resp);

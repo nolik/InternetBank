@@ -12,6 +12,6 @@ public class EmptyCommand implements ActionCommand {
 		/* in case of mistake with directly connection to controller redirect to index.jsp page */
        //TODO realize get page from propertyFile (now can't throw MissingResourceException)
 		// String page = ConfigurationManager.getProperty("path.page.index");
-        return "/index.jsp";
+        return "/jsp/index.jsp";
     }
 }
