@@ -37,6 +37,7 @@ public class Controller extends HttpServlet {
         String com = req.getParameter("command");
         logger.info("command in request="+com);
         processRequest(req, resp);
+
        /* String login = req.getParameter("login");
         String password = req.getParameter("password");
         User user = null;
