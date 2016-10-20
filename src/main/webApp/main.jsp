@@ -14,7 +14,7 @@
     <h1> Hello username.</h1>
     <h3> Welcom to the bank account page!</h3>
         <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
-            <INPUT type="submit" value="Logout">
+            <INPUT name="command" type="submit" value="LOGOUT">
 
             </FORM>
 <body>

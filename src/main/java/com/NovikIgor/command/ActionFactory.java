@@ -17,7 +17,7 @@ public class ActionFactory {
         // get command name from request
         String action = request.getParameter("command");
         logger.info("get parameter from request command="+action);
-        
+
         if (action == null || action.isEmpty()) {
             // if don't have command
             return current;

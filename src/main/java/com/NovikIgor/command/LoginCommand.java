@@ -9,7 +9,6 @@ import com.NovikIgor.recourceManagment.MessageManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * Command class responsible for Login from login page.
@@ -25,7 +24,7 @@ public class LoginCommand implements ActionCommand {
 
     public String execute(HttpServletRequest req) {
         userManager = new UserManagmentDAOimpl();
-        String page;
+        String page = null;
 
         String login = req.getParameter(LOGIN);
         String password = req.getParameter(PASSWORD);
@@ -34,18 +33,13 @@ public class LoginCommand implements ActionCommand {
         logger.info("authorisation information from Attribute login=" + login
                 + " \n Attribute password=" + password);
 
-        UserManagmentDAOimpl userDAOManager = new UserManagmentDAOimpl();
-
-
-        HttpSession session = req.getSession();
-
         logger.info("initialise session in during login command implementation. next step - check login with DB");
         //check for registration user if it's not unique print cause on the web page
         boolean haveLogin = userManager.checkLogin(login);
 
         if (!haveLogin) {
             req.setAttribute("loginNotFoundMessage", MessageManager.getProperty("message.loginNotFound"));
-            page = ConfigurationManager.getProperty("path.page.index");
+            page = ConfigurationManager.getProperty("path.page.loginError");
             return page;
         }
 
@@ -62,25 +56,15 @@ public class LoginCommand implements ActionCommand {
                 return ConfigurationManager.getProperty("path.page.admin");
             }
 
-            // if it's usual user redirect it to the main page.
+            //for all others
             req.getSession().setAttribute("role", role);
             page = ConfigurationManager.getProperty("path.page.main");
 
         } else {
             req.setAttribute("errorLoginPassMessage",
                     MessageManager.getProperty("message.loginerror"));
-            page = ConfigurationManager.getProperty("path.page.login");
+            page = ConfigurationManager.getProperty("path.page.loginError");
         }
-
-          /*  if (user != null && login.equals(user.getLogin()) && password.equals(user.getPassword())) {
-                session.setAttribute("role", ClientType.CLIENT);
-                page = ConfigurationManager.getProperty("/main.jsp");
-                logger.info("authorisation of user %s from index.jsp" + user.getLogin());
-            } else {
-                session.setAttribute("role", ClientType.GUEST);
-                page = ConfigurationManager.getProperty("/loginError.jsp");
-                logger.info("go to loginError.jsp from authorisation mechanism");
-            }*/
 
 
         return page;

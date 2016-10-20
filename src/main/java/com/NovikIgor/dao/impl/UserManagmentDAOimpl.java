@@ -94,6 +94,12 @@ public class UserManagmentDAOimpl implements UserManagementDAO {
         return user;
     }
 
+    /**
+     * Check login from form on login.jsp with information from DB
+     *
+     * @param login
+     * @return true - if login present in DB
+     */
     public boolean checkLogin(String login) {
         Connection conn = null;
         PreparedStatement state = null;
