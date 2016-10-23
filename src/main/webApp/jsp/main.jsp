@@ -11,7 +11,9 @@
 <html>
 <head>
     <title>MainJSP</title>
-    <h1> Hello username.</h1>
+    <h1> Hello, ${lastName} ${firstName}! </h1>
+
+
     <h3> Welcom to the bank account page!</h3>
         <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
             <INPUT name="command" type="submit" value="LOGOUT">

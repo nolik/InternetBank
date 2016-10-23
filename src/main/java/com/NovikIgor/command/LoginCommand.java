@@ -58,6 +58,8 @@ public class LoginCommand implements ActionCommand {
 
             //for all others
             req.getSession().setAttribute("role", role);
+            req.getSession().setAttribute("firstName", user.getFirstName());
+            req.getSession().setAttribute("lastName", user.getLastName());
             page = ConfigurationManager.getProperty("path.page.main");
 
         } else {
