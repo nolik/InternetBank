@@ -6,6 +6,7 @@ package com.NovikIgor.dto;
 public class Card {
     private int cardNumber;
     private int summ;
+    private String currency;
 
     public int getCardNumber() {
         return cardNumber;
@@ -21,5 +22,13 @@ public class Card {
 
     public void setSumm(int summ) {
         this.summ = summ;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 }
