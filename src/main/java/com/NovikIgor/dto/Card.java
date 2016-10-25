@@ -5,7 +5,8 @@ package com.NovikIgor.dto;
  */
 public class Card {
     private int cardNumber;
-    private int summ;
+    private int sum;
+    private String user;
     private String currency;
 
     public int getCardNumber() {
@@ -16,12 +17,12 @@ public class Card {
         this.cardNumber = cardNumber;
     }
 
-    public int getSumm() {
-        return summ;
+    public int getSum() {
+        return sum;
     }
 
-    public void setSumm(int summ) {
-        this.summ = summ;
+    public void setSum(int sum) {
+        this.sum = sum;
     }
 
     public String getCurrency() {
@@ -30,5 +31,13 @@ public class Card {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }

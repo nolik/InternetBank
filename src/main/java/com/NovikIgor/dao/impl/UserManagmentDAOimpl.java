@@ -18,7 +18,7 @@ public class UserManagmentDAOimpl implements UserManagementDAO {
     private static final String SQL_CHECK_LOGIN_IN_DB = "SELECT * FROM InternetBanking.Users WHERE login=?";
     private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM InternetBanking.Users";
     private static final String SQL_SELECT_ALL_USERS_BY_LOGIN = "SELECT * FROM InternetBanking.Users WHERE login=?";
-    private static final String SQL_SELECT_USER_AND_CARD_AND_CURRENCY_OF_CARD_BY_LOGIN="SELECT * FROM InternetBanking.Users INNER JOIN InternetBanking.Cards INNER JOIN InternetBanking.Currencies ON Users.login=Cards.Users_login AND Currencies.idCurrency=Cards.Currencies_idCurrency WHERE Users.login=?";
+    //private static final String SQL_SELECT_USER_AND_CARD_AND_CURRENCY_OF_CARD_BY_LOGIN="SELECT * FROM InternetBanking.Users INNER JOIN InternetBanking.Cards INNER JOIN InternetBanking.Currencies ON Users.login=Cards.Users_login AND Currencies.idCurrency=Cards.Currencies_idCurrency WHERE Users.login=?";
 
     private static final Logger logger = Logger.getLogger(UserManagmentDAOimpl.class);
 

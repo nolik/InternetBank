@@ -13,7 +13,7 @@ public interface CardManagementDAO {
 
     public List<Card> getAllCards();
 
-    public List<Card> getCardsByLogin();
+    public List<Card> getCardsByLogin(String login);
 
-    public Card getCardByID();
+    public Card getCardByCardID(int CartID);
 }
