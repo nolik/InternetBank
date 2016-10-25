@@ -23,6 +23,7 @@ public class ConnectionPool {
     private ConnectionPool() {
     }
 
+    //TODO: realize here connection pool! with TRANSACTION.
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
         Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);

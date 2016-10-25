@@ -2,13 +2,17 @@ package com.NovikIgor.command;
 
 
 import com.NovikIgor.dao.entity.ClientType;
+import com.NovikIgor.dao.impl.CardManagmentDAOimpl;
 import com.NovikIgor.dao.impl.UserManagmentDAOimpl;
+import com.NovikIgor.dto.Card;
 import com.NovikIgor.dto.User;
 import com.NovikIgor.recourceManagment.ConfigurationManager;
 import com.NovikIgor.recourceManagment.MessageManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Command class responsible for Login from login page.
@@ -16,15 +20,20 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class LoginCommand implements ActionCommand {
     private static final String LOGIN = "login";
-    public static final String PASSWORD = "password";
+    private static final String PASSWORD = "password";
+    private static final String ATTR_USER_CARDS="cards";
     private UserManagmentDAOimpl userManager;
+    private CardManagmentDAOimpl cardManager;
     User user = null;
+    List<Card> userCards = null;
 
     private static Logger logger = Logger.getLogger(ActionCommand.class);
 
     public String execute(HttpServletRequest req) {
-        userManager = new UserManagmentDAOimpl();
         String page = null;
+        HttpSession session = req.getSession();
+        userManager = new UserManagmentDAOimpl();
+        cardManager = new CardManagmentDAOimpl();
 
         String login = req.getParameter(LOGIN);
         String password = req.getParameter(PASSWORD);
@@ -46,20 +55,27 @@ public class LoginCommand implements ActionCommand {
         //for avoid exception we connect to DB and get user after check login
         // in previous if() block;
         user = userManager.getUsersByLogin(login);
+        //take all user cards from DB
+        userCards = cardManager.getCardsByLogin(login);
+
 
         if (checkingLogin(login, password, user)) {
-            req.getSession().setAttribute("login", login);
+            session.setAttribute("login", login);
             String role = user.getRole();
             //check Administrator role and if administrator redirect it to admin page
             if (role.equals(ClientType.ADMIN)) {
-                req.getSession().setAttribute("role", ClientType.ADMIN);
+                session.setAttribute("role", ClientType.ADMIN);
                 return ConfigurationManager.getProperty("path.page.admin");
             }
 
             //for all others
-            req.getSession().setAttribute("role", role);
-            req.getSession().setAttribute("firstName", user.getFirstName());
-            req.getSession().setAttribute("lastName", user.getLastName());
+            session.setAttribute("role", role);
+            session.setAttribute("firstName", user.getFirstName());
+            session.setAttribute("lastName", user.getLastName());
+          //  req.getSession().setAttribute();
+            //TODO: next step realize this in attributes.
+          //  session.setAttribute(ATTR_USER_CARDS, ConcurrentMap<Card, Integer>);
+
             page = ConfigurationManager.getProperty("path.page.main");
 
         } else {
