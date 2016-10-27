@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Command class responsible for Login from login page.
@@ -74,7 +75,7 @@ public class LoginCommand implements ActionCommand {
             session.setAttribute("lastName", user.getLastName());
             //  req.getSession().setAttribute();
             //TODO: next step realize this in attributes.
-        //    session.setAttribute(ATTR_USER_CARDS, ConcurrentLinkedQueue<Card>);
+            session.setAttribute(ATTR_USER_CARDS, new ConcurrentLinkedQueue<Card>(userCards));
 
             page = ConfigurationManager.getProperty("path.page.main");
 
