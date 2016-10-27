@@ -40,4 +40,14 @@ public class Card {
     public void setUser(String user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "cardNumber=" + cardNumber +
+                ", sum=" + sum +
+                ", user='" + user + '\'' +
+                ", currency='" + currency + '\'' +
+                '}';
+    }
 }

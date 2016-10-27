@@ -29,7 +29,7 @@ public class CardManagmentDAOimpl implements CardManagementDAO {
     public List<Card> getAllCards() {
         Connection conn = null;
         PreparedStatement state = null;
-        //TODO: change here to ConcurentLinkedQueue<Card> implementation
+        //TODO: change here to ConcurentLinkedQueue<Card> implementation?
         List<Card> allCards = new ArrayList<Card>();
 
         try {

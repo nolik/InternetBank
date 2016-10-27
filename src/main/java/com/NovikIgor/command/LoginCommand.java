@@ -21,7 +21,7 @@ import java.util.List;
 public class LoginCommand implements ActionCommand {
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
-    private static final String ATTR_USER_CARDS="cards";
+    private static final String ATTR_USER_CARDS = "cards";
     private UserManagmentDAOimpl userManager;
     private CardManagmentDAOimpl cardManager;
     User user = null;
@@ -72,9 +72,9 @@ public class LoginCommand implements ActionCommand {
             session.setAttribute("role", role);
             session.setAttribute("firstName", user.getFirstName());
             session.setAttribute("lastName", user.getLastName());
-          //  req.getSession().setAttribute();
+            //  req.getSession().setAttribute();
             //TODO: next step realize this in attributes.
-          //  session.setAttribute(ATTR_USER_CARDS, ConcurrentMap<Card, Integer>);
+        //    session.setAttribute(ATTR_USER_CARDS, ConcurrentLinkedQueue<Card>);
 
             page = ConfigurationManager.getProperty("path.page.main");
 
