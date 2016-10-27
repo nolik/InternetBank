@@ -15,12 +15,7 @@
     <h1> Hello, ${lastName} ${firstName}! </h1>
         <%
         ConcurrentLinkedQueue<Card> userCards = (ConcurrentLinkedQueue<Card>) request.getAttribute("cards");
-        for (Card card : userCards){
-            out.println("------------------------------------------------------------------");
-            out.println("|"+card.getCardNumber() + " | " + card.getSum()+" | " + card.getCurrency() + " |" );
-            out.println("------------------------------------------------------------------");
-        }
-    %>
+        %>
 
     <h3> Welcom to your bank account page!</h3>
     <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
