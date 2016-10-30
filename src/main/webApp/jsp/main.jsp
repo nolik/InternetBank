@@ -12,38 +12,64 @@
 
 <html>
 <head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        th,td {
+            text-align: center;
+        }
+    </style>
+
     <title>MainJSP</title>
     <h1> Hello, ${lastName} ${firstName}! </h1>
 
     <h2> Welcom to your bank account page!</h2>
-    <br/>
-    <big> Your card list: </big>
-    <table>
-        <p>
-            - ${cards}!!!!!
-        </p>
-    </table>
+</head>
 
-    <br/>
-    ________________________________________________
-    <br/>
-    <%-- Here i try to use list implementation --%>
+<br/>
+<h2> Your card list: </h2>
 
-    <table>
-        <c:forEach items="${cards}" var="item">
-            <tr>
-                <td><c:out value="${item}" /></td>
-            </tr>
-        </c:forEach>
-    </table>
+<%-- Here i try to use list implementation --%>
 
-    _________________________________________________
-    <br />
+<table style="width:100%">
+    <thead>
+    <tr>
+        <th>Card Number</th>
+        <th>Summ</th>
+        <th>Currency</th>
+        <th>Operation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${cards}" var="card">
+        <tr>
+            <td>
+                <c:out value="${card.cardNumber}" />
+            </td>
+            <td>
+                <c:out value="${card.sum}" />
+            </td>
+            <td>
+                <c:out value="${card.currency}" />
+            </td>
+            <td>
+                <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
+                    <input type="hidden" name="operatingCart" value="${card}"/>
+                    <input name="command" type="submit" value="Transaction">
+                </FORM>
+            </td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
 
-    <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
-        <INPUT name="command" type="submit" value="LOGOUT">
+<br/>
+<hr/>
 
-    </FORM>
+<FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
+    <INPUT name="command" type="submit" value="Logout">
+</FORM>
 <body>
 
 </body>

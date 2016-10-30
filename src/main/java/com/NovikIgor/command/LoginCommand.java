@@ -77,7 +77,7 @@ public class LoginCommand implements ActionCommand {
 
 
 
-            session.setAttribute("cards", userCards);
+            session.setAttribute(ATTR_USER_CARDS, userCards);
 
             page = ConfigurationManager.getProperty("path.page.main");
 
