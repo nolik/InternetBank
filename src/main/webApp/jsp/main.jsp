@@ -56,7 +56,7 @@
             <td>
                 <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
                     <input type="hidden" name="operatingCartID" value="${card.cardNumber}"/>
-                    <input name="command" type="submit" value="Transaction">
+                    <input name="command" type="submit" value="operation">
                 </FORM>
             </td>
         </tr>

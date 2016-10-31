@@ -13,33 +13,29 @@
     <title>Transaction page</title>
 </head>
 <body>
-<h2>Transaction from the card:</h2>
-<td>
-    Cart №:  <c:out value="${cart.cardNumber}" />
-</td>
-<td>
-    Summ: <c:out value="${cart.sum}" />
-</td>
-<td>
-    Currency<c:out value="${cart.currency}" />
-</td>
+<h2>Sent money from the cart №: ${operatingCart.cardNumber}
+    <br/>
+    Balance: ${operatingCart.sum}      Currency: ${operatingCart.currency} </h2>
 
 <br/>
 <form method="POST" action="${pageContext.request.contextPath}/сontroller">
-    <input type="hidden" name="command" value="sentMoney"/>
+    <input type="hidden" name="command" value="SENT_MONEY"/>
     <table>
         <tr>
-            <td><b>toCart:</b></td>
+            <td><b>Recipient Cart:</b></td>
             <td>
-                <input name="toCart" type="text" size=40></td>
+                <input name="recipientCart" type="number" size=40 required></td>
         </tr>
+        ${cartNotFoundMessage}
         <tr>
             <td><b>sum of operation:</b></td>
             <td>
-                <input name="sumOfOperation" type="text" size=40></td>
+                <input name="sumOfOperation" type="number" size=40 required></td>
         </tr>
-        </table>
-    </form>
+        ${notEnoughMoney}
+    </table>
+    <input type="submit" value="Sent Money">
+</form>
 
 </body>
 </html>

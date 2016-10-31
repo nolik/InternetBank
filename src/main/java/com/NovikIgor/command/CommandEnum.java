@@ -17,12 +17,16 @@ public enum CommandEnum {
             this.command = new LogoutCommand();
         }
     },
-    TRANSACTION {
+    OPERATION {
         {
-            this.command = new TransactionCommand();
+            this.command = new OperationCommand();
         }
-    }
-    ;
+    },
+    SENT_MONEY {
+        {
+            this.command = new SentMoneyCommand();
+        }
+    };
 
     ActionCommand command;
 

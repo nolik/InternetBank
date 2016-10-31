@@ -115,7 +115,7 @@ public class UserManagmentDAOimpl implements UserManagementDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("SQLExp where checkLogin", e);
+            logger.error("SQLExp where checkCartID", e);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

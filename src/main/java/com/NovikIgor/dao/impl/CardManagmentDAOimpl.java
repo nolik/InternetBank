@@ -5,10 +5,7 @@ import com.NovikIgor.dao.pool.ConnectionPool;
 import com.NovikIgor.dto.Card;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +20,7 @@ public class CardManagmentDAOimpl implements CardManagementDAO {
     private static final String SQL_SELECT_ALL_CARDS_MAIN_INFO = "SELECT cardNumber,summ,Users_login,currencyName FROM InternetBanking.Cards INNER JOIN Currencies ON Currencies_idCurrency=Currencies.idCurrency";
     private static final String SQL_SELECT_CARDS_BY_LOGIN = "SELECT cardNumber,summ,Users_login,currencyName FROM InternetBanking.Cards INNER JOIN Currencies ON Currencies_idCurrency=Currencies.idCurrency WHERE Cards.Users_login=?";
     private static final String SQL_SELECT_CARDS_BY_CARDID ="SELECT cardNumber,summ,Users_login,currencyName FROM InternetBanking.Cards INNER JOIN Currencies ON Currencies_idCurrency=Currencies.idCurrency WHERE Cards.cardNumber=?";
+    private static final String SQL_CHECK_CARD_IN_DB ="SELECT * FROM InternetBanking.Cards WHERE cardNumber=?";
 
     private static final Logger logger = Logger.getLogger(CardManagmentDAOimpl.class);
 
@@ -116,5 +114,27 @@ public class CardManagmentDAOimpl implements CardManagementDAO {
         }
 
         return card;
+    }
+
+    public boolean checkCartID(int cartID) {
+        Connection conn = null;
+        PreparedStatement state = null;
+        boolean haveCart = false;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            state = conn.prepareStatement(SQL_CHECK_CARD_IN_DB, Statement.RETURN_GENERATED_KEYS);
+            state.setInt(1, cartID);
+            ResultSet rs = state.executeQuery();
+            haveCart = rs.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("SQLExp where checkCart", e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return haveCart;
     }
 }

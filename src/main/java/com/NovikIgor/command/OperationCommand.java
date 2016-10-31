@@ -7,23 +7,27 @@ import com.NovikIgor.recourceManagment.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * This command responsible for the forwarding to operating page. Now this page using
+ * only for SentMoneyCommand, in the future number of command can be increased (add additional form for
+ * selecting the command, and depending of this for parameters => create responsible operating.jsp.
  * Created by nolik on 31.10.16.
  */
-public class TransactionCommand implements ActionCommand {
+public class OperationCommand implements ActionCommand {
     private static final String PARAM_CART_ID = "operatingCartID";
     private static final String OPERATING_CART = "operatingCart";
+
     private CardManagmentDAOimpl cardManager = new CardManagmentDAOimpl();
     Card operatingCard = null;
+    String operationPage = null;
 
     public String execute(HttpServletRequest request) {
-        String page = null;
-
-
         int cartID = Integer.valueOf(request.getParameter(PARAM_CART_ID));
-        operatingCard = cardManager.getCardByCardID(cartID);
-        request.setAttribute(OPERATING_CART, operatingCard);
-        page = ConfigurationManager.getProperty("path.page.transactionPage");
 
-        return page;
+        operationPage = ConfigurationManager.getProperty("path.page.operationPage");
+        operatingCard = cardManager.getCardByCardID(cartID);
+
+        request.setAttribute(OPERATING_CART, operatingCard);
+
+        return operationPage;
     }
 }
