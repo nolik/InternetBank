@@ -27,7 +27,7 @@ public class LoginCommand implements ActionCommand {
     User user = null;
     List<Card> userCards = null;
 
-    private static Logger logger = Logger.getLogger(ActionCommand.class);
+    private static Logger logger = Logger.getLogger(LoginCommand.class);
 
     public String execute(HttpServletRequest req) {
         String page = null;
