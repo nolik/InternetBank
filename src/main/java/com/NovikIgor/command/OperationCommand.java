@@ -26,7 +26,7 @@ public class OperationCommand implements ActionCommand {
         operationPage = ConfigurationManager.getProperty("path.page.operationPage");
         operatingCard = cardManager.getCardByCardID(cartID);
 
-        request.setAttribute(OPERATING_CART, operatingCard);
+        request.getSession().setAttribute(OPERATING_CART, operatingCard);
 
         return operationPage;
     }

@@ -24,15 +24,15 @@
         <tr>
             <td><b>Recipient Cart:</b></td>
             <td>
-                <input name="recipientCart" type="number" size=40 required></td>
+                <input name="recipientCart" type="number" size=20 required></td>
         </tr>
         ${cartNotFoundMessage}
         <tr>
             <td><b>sum of operation:</b></td>
             <td>
-                <input name="sumOfOperation" type="number" size=40 required></td>
+                <input name="sumOfOperation" type="number" size=20 required></td>
         </tr>
-        ${notEnoughMoney}
+        ${notEnoughMoney} ${wrongSum}
     </table>
     <input type="submit" value="Sent Money">
 </form>
