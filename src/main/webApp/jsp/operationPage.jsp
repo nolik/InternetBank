@@ -36,6 +36,6 @@
     </table>
     <input type="submit" value="Sent Money">
 </form>
-
+<a href="${pageContext.request.contextPath}/main.jsp">Go main page</a>
 </body>
 </html>
