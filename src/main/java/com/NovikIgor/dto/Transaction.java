@@ -9,9 +9,27 @@ public class Transaction {
     private int transactionID;
     private String operation;
     private int sumOfOperation;
+    private int cardNumber;
+    private String usersLogin;
     private Timestamp transactionTime;
 
     public Transaction() {
+    }
+
+    public int getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(int cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public String getUsersLogin() {
+        return usersLogin;
+    }
+
+    public void setUsersLogin(String usersLogin) {
+        this.usersLogin = usersLogin;
     }
 
     public int getTransactionID() {

@@ -20,7 +20,7 @@ public class ConnectionPool {
 
     private static final Logger logger = Logger.getLogger(ConnectionPool.class);
 
-    private ConnectionPool() {
+    protected ConnectionPool() {
     }
 
     //TODO: realize here connection pool! with TRANSACTION.

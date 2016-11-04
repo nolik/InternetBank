@@ -21,8 +21,10 @@ public class CardManagmentDAOimpl implements CardManagementDAO {
     private static final String SQL_SELECT_CARDS_BY_LOGIN = "SELECT cardNumber,summ,Users_login,currencyName FROM InternetBanking.Cards INNER JOIN Currencies ON Currencies_idCurrency=Currencies.idCurrency WHERE Cards.Users_login=?";
     private static final String SQL_SELECT_CARDS_BY_CARDID ="SELECT cardNumber,summ,Users_login,currencyName FROM InternetBanking.Cards INNER JOIN Currencies ON Currencies_idCurrency=Currencies.idCurrency WHERE Cards.cardNumber=?";
     private static final String SQL_CHECK_CARD_IN_DB ="SELECT * FROM InternetBanking.Cards WHERE cardNumber=?";
+    private static final String SQL_EDIT_CART_SUM = "UPDATE `InternetBanking`.`Cards` SET `summ`=? WHERE `cardNumber`=?";
 
     private static final Logger logger = Logger.getLogger(CardManagmentDAOimpl.class);
+
 
     public List<Card> getAllCards() {
         Connection conn = null;
@@ -136,5 +138,13 @@ public class CardManagmentDAOimpl implements CardManagementDAO {
         }
 
         return haveCart;
+    }
+
+    public boolean editCartSum(Card card, Connection connection) throws SQLException {
+        PreparedStatement state = null;
+        state = connection.prepareStatement(SQL_EDIT_CART_SUM);
+        state.setInt(1,card.getSum());
+        state.setInt(2,card.getCardNumber());
+        return state.execute();
     }
 }

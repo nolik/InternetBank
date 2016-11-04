@@ -50,6 +50,9 @@ public class SentMoneyCommand implements ActionCommand {
             request.setAttribute("wrongSum", MessageManager.getProperty(MessageManager.getProperty("message.wrongSum")));
             return page;
         }
+
+        //TODO: realise here logic of Transaction with sending money!
+
         return page;
     }
 }
