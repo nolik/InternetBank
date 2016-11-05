@@ -32,6 +32,10 @@ public class TransactionConnectionWrapper extends ConnectionPool{
         this.connection.setAutoCommit(true);
     }
 
+    public void close() throws SQLException {
+        this.connection.close();
+    }
+
 
     public Connection  getConnectionWrapper() {
         return connection;

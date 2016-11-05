@@ -70,6 +70,8 @@ public class Transaction {
                 "transactionID=" + transactionID +
                 ", operation='" + operation + '\'' +
                 ", sumOfOperation=" + sumOfOperation +
+                ", cardNumber=" + cardNumber +
+                ", usersLogin='" + usersLogin + '\'' +
                 ", transactionTime=" + transactionTime +
                 '}';
     }
