@@ -10,9 +10,19 @@
 <head>
     <title>Operation been finished successful</title>
 </head>
-Operation been finished successful!
+<p align="center">
+    <b2>
+        Operation been finished successful!
+    </b2>
+</p>
 <body>
+<p align="center">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/lcYpaYrYpus?autoplay=1" frameborder="0"
+            allowfullscreen></iframe>
+</p>
 
+<br/>
+<br/>
 <a href="${pageContext.request.contextPath}/jsp/main.jsp">Go main page</a>
 </body>
 </html>
