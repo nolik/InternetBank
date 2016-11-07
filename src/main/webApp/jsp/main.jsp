@@ -16,7 +16,8 @@
         table, th, td {
             border: 1px solid black;
         }
-        th,td {
+
+        th, td {
             text-align: center;
         }
     </style>
@@ -30,7 +31,7 @@
 <br/>
 <h2> Your card list: </h2>
 
-<%-- Here i try to use list implementation --%>
+<%-- Here  list-table implementation --%>
 
 <table style="width:100%">
     <thead>
@@ -44,19 +45,31 @@
     <tbody>
     <c:forEach items="${cards}" var="card">
         <tr>
-            <td>
-                <c:out value="${card.cardNumber}" />
-            </td>
-            <td>
-                <c:out value="${card.sum}" />
-            </td>
-            <td>
-                <c:out value="${card.currency}" />
-            </td>
+            <td><c:out value="${card.cardNumber}"/></td>
+            <td><c:out value="${card.sum}"/></td>
+            <td><c:out value="${card.currency}"/></td>
             <td>
                 <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
                     <input type="hidden" name="operatingCartID" value="${card.cardNumber}"/>
-                    <input name="command" type="submit" value="operation">
+                    <input name="command" type="submit" value="OPERATION_FOR_SENDING_MONEY">
+                </FORM>
+                <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
+                    <input type="hidden" name="operatingCartID" value="${card.cardNumber}"/>
+                    <input name="command" type="submit" value="TRANSACTION_HISTORY">
+                </FORM>
+
+                <br/>
+
+                <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
+                    <select>
+                        <option name="command" value="TRANSACTION_HISTORY">Review Transaction History</option>
+                        <option name="command" value="OPERATION_FOR_SENDING_MONEY">Sent Money From Cart</option>
+                    </select>
+                    <br/>
+
+                    <input type="hidden" name="operatingCartID" value="${card.cardNumber}"/>
+                    <input type="hidden" name="command" value="TRANSACTION_HISTORY" />
+                    <input type="submit" value="make operation">
                 </FORM>
             </td>
         </tr>

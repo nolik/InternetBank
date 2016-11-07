@@ -20,6 +20,7 @@ public class SentMoneyCommand implements ActionCommand {
     private static final String OPERATING_CART = "operatingCart";
     private static final String PARAM_RECIPIENT_CART = "recipientCart";
     private static final String PARAM_OPERATION_SUM = "sumOfOperation";
+    private static final String ATTR_USER_CARDS = "cards";
 
     private static Logger logger = Logger.getLogger(SentMoneyCommand.class);
 
@@ -67,6 +68,17 @@ public class SentMoneyCommand implements ActionCommand {
         //Transaction of sending sum from operating cart to rhe recipient cart
         // better do separately method
         //TODO: realise here logic of Transaction with sending money!
+        doTransaction(operationSum);
+            page = ConfigurationManager.getProperty("path.page.successfull");
+
+     //   request.setAttribute(ATTR_USER_CARDS, userCards);
+
+
+        return page;
+    }
+
+
+    private void doTransaction(int operationSum){
         TransactionConnectionWrapper transConWrapper = new TransactionConnectionWrapper();
 
 
@@ -111,8 +123,6 @@ public class SentMoneyCommand implements ActionCommand {
                 e.printStackTrace();
             }
         }
-            page = ConfigurationManager.getProperty("path.page.successfull");
-
-        return page;
     }
+
 }

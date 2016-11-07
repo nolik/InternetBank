@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
  * selecting the command, and depending of this for parameters => create responsible operating.jsp.
  * Created by nolik on 31.10.16.
  */
-public class OperationCommand implements ActionCommand {
+public class OperationCommandForSendingMoney implements ActionCommand {
     private static final String PARAM_CART_ID = "operatingCartID";
     private static final String OPERATING_CART = "operatingCart";
 
