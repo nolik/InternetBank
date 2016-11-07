@@ -49,26 +49,19 @@
             <td><c:out value="${card.sum}"/></td>
             <td><c:out value="${card.currency}"/></td>
             <td>
-                <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
-                    <input type="hidden" name="operatingCartID" value="${card.cardNumber}"/>
-                    <input name="command" type="submit" value="OPERATION_FOR_SENDING_MONEY">
-                </FORM>
-                <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
-                    <input type="hidden" name="operatingCartID" value="${card.cardNumber}"/>
-                    <input name="command" type="submit" value="TRANSACTION_HISTORY">
-                </FORM>
+
 
                 <br/>
 
                 <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
-                    <select>
-                        <option name="command" value="TRANSACTION_HISTORY">Review Transaction History</option>
-                        <option name="command" value="OPERATION_FOR_SENDING_MONEY">Sent Money From Cart</option>
+                    <select name="command">
+                        <option value="TRANSACTION_HISTORY">Review Transaction History</option>
+                        <option value="OPERATION_FOR_SENDING_MONEY">Sent Money From Cart</option>
                     </select>
                     <br/>
 
                     <input type="hidden" name="operatingCartID" value="${card.cardNumber}"/>
-                    <input type="hidden" name="command" value="TRANSACTION_HISTORY" />
+                    <br/>
                     <input type="submit" value="make operation">
                 </FORM>
             </td>
