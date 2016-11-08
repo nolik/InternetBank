@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class TransactionManagmentDAOimpl implements TransactionManagmentDAO {
     private static final String SQL_CREATE_TRANSACTION = "INSERT INTO `InternetBanking`.`Transactions` (`operation`, `summOfOperation`, `Cards_cardNumber`, `Cards_Users_login`) VALUES (?, ?, ?, ?)";
-    private static final String SQL_SELECT_TRANSACTIONS_BY_CART_ID = "SELECT * FROM transactions WHERE transactions.Cards_CardNumber = ?";
+    private static final String SQL_SELECT_TRANSACTIONS_BY_CART_ID = "SELECT * FROM `InternetBanking`.`Transactions` WHERE Transactions.Cards_cardNumber = ?";
 
     private static Logger logger = Logger.getLogger(TransactionManagmentDAOimpl.class);
 

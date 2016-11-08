@@ -68,19 +68,18 @@ public class SentMoneyCommand implements ActionCommand {
         //Transaction of sending sum from operating cart to rhe recipient cart
         // better do separately method
         //TODO: realise here logic of Transaction with sending money!
-        doTransaction(operationSum);
-            page = ConfigurationManager.getProperty("path.page.successfull");
+        if (doTransaction(operationSum))
+            page = ConfigurationManager.getProperty("path.page.successful");
 
-     //   request.setAttribute(ATTR_USER_CARDS, userCards);
+        //   request.setAttribute(ATTR_USER_CARDS, userCards);
 
 
         return page;
     }
 
 
-    private void doTransaction(int operationSum){
+    private boolean doTransaction(int operationSum) {
         TransactionConnectionWrapper transConWrapper = new TransactionConnectionWrapper();
-
 
 
         try {
@@ -99,17 +98,19 @@ public class SentMoneyCommand implements ActionCommand {
             transaction.setSumOfOperation(operationSum);
             transaction.setUsersLogin(operatingCard.getUser());
 
-            logger.info("before create transaction "+ transaction);
+            logger.info("before create transaction " + transaction);
             transactionManager.createTransaction(transaction, connectionFromWrapper);
             cardManager.editCartSum(operatingCard, connectionFromWrapper);
             cardManager.editCartSum(recipientCart, connectionFromWrapper);
 
             transConWrapper.commit();
             logger.info("Sent Money operation finished successful");
+
         } catch (SQLException e) {
             try {
                 transConWrapper.rollback();
-                logger.info("catch Database exception in main sent command operation");
+                logger.error("catch Database exception in main sent command operation", e);
+                return false;
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
@@ -123,6 +124,8 @@ public class SentMoneyCommand implements ActionCommand {
                 e.printStackTrace();
             }
         }
+
+        return true;
     }
 
 }
