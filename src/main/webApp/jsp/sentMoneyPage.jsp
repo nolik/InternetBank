@@ -24,13 +24,13 @@
         <tr>
             <td><b>Recipient Cart:</b></td>
             <td>
-                <input name="recipientCart" type="number" size=20 required></td>
+                <input name="recipientCart" type="number" max="2147483647"  required></td>
         </tr>
         ${cartNotFoundMessage}
         <tr>
             <td><b>sum of operation:</b></td>
             <td>
-                <input name="sumOfOperation" type="number" size=20 required></td>
+                <input name="sumOfOperation" type="number" max="2147483647" required></td>
         </tr>
         ${notEnoughMoney} ${wrongSum}
     </table>
