@@ -7,33 +7,82 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .form {
+        padding: 20px;
+        background: #999;
+        width: 50%;
+        min-width: 200px;
+    }
+
+    .form input {
+        display: block;
+        width: 100%;
+        height: 30px;
+        border: none;
+        margin-bottom: 20px;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .form button {
+        display: block;
+        width: 100%;
+        border-radius: 0px;
+        background: skyblue;
+        border: none;
+        height: 30px;
+    }
+
+    .wrapper {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+
+    .wrapper .form {
+        display: block;
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translateY(-30%) translateX(-50%)
+    }
+
+
+</style>
 <head>
     <title>Internet Banking</title>
 </head>
 <body>
-<b> Welcome to Internet Banking!</b>
+<p align="right">
+Current time:
+    <br/>
+    <jsp:useBean id="gc" class="java.util.GregorianCalendar"/>
+    <jsp:getProperty name="gc" property="time"/>
+</p>
 
-<h4>Current time:</h4>
-<jsp:useBean id="gc" class="java.util.GregorianCalendar"/>
-<jsp:getProperty name="gc" property="time"/>
+<p align="center">
+    <b> Welcome to Internet Banking!</b>
+    <br/>
+    Please Logg In:
+</p>
+<div class="wrapper">
+    <form method="POST" action="${pageContext.request.contextPath}/сontroller" class="form">
+        <input type="hidden" name="command" value="login"/>
+        <label for="login">
+            <input id="login" name="login" placeholder="Login" type="text"/>
+        </label>
+        <label for="password">
+            <input id="password" name="password" placeholder="Password" type="password"/>
+        </label>
 
-<h3>Please Logg In:</h3>
-<form method="POST" action="${pageContext.request.contextPath}/сontroller">
-    <input type="hidden" name="command" value="login"/>
-    <table>
-        <tr>
-            <td><b>Login:</b></td>
-            <td>
-                <input name="login" type="text" size=40></td>
-        </tr>
-        <tr>
-            <td><b>Password:</b></td>
-            <td>
-                <input name="password" type="password" size=40></td>
-        </tr>
-
-    </table>
-    <input type="submit" value="Submit">
-    <input type="reset" value="Reset">
+        <button type="submit">Log In</button>
+    </form>
+</div>
 </body>
 </html>
