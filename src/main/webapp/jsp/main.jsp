@@ -12,6 +12,7 @@
 
 <html>
 <head>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/background.css"/>
     <style>
         table, th, td {
             border: 1px solid black;
@@ -21,62 +22,65 @@
             text-align: center;
         }
     </style>
+<body>
 
-    <title>MainJSP</title>
+<title>MainJSP</title>
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+
     <h1> Hello, ${lastName} ${firstName}! </h1>
 
     <h2> Welcom to your bank account page!</h2>
-</head>
+    </head>
 
-<br/>
-<h2> Your card list: </h2>
+    <br/>
+    <h2> Your card list: </h2>
 
-<%-- Here  list-table implementation --%>
+    <%-- Here  list-table implementation --%>
 
-<table style="width:100%">
-    <thead>
-    <tr>
-        <th>Card Number</th>
-        <th>Summ</th>
-        <th>Currency</th>
-        <th>Operation</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${cards}" var="card">
+    <table style="width:100%">
+        <thead>
         <tr>
-            <td><c:out value="${card.cardNumber}"/></td>
-            <td><c:out value="${card.sum}"/></td>
-            <td><c:out value="${card.currency}"/></td>
-            <td>
-
-
-                <br/>
-
-                <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
-                    <select name="command">
-                        <option value="TRANSACTION_HISTORY">Review Transaction History</option>
-                        <option value="OPERATION_FOR_SENDING_MONEY">Sent Money From Cart</option>
-                    </select>
-                    <br/>
-
-                    <input type="hidden" name="operatingCartID" value="${card.cardNumber}"/>
-                    <br/>
-                    <input type="submit" value="make operation">
-                </FORM>
-            </td>
+            <th>Card Number</th>
+            <th>Summ</th>
+            <th>Currency</th>
+            <th>Operation</th>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach items="${cards}" var="card">
+            <tr>
+                <td><c:out value="${card.cardNumber}"/></td>
+                <td><c:out value="${card.sum}"/></td>
+                <td><c:out value="${card.currency}"/></td>
+                <td>
 
-<br/>
-<hr/>
 
-<FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
-    <INPUT name="command" type="submit" value="Logout">
-</FORM>
-<body>
+                    <br/>
 
+                    <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
+                        <select name="command">
+                            <option value="TRANSACTION_HISTORY">Review Transaction History</option>
+                            <option value="OPERATION_FOR_SENDING_MONEY">Sent Money From Cart</option>
+                        </select>
+                        <br/>
+
+                        <input type="hidden" name="operatingCartID" value="${card.cardNumber}"/>
+                        <br/>
+                        <input type="submit" value="make operation">
+                    </FORM>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+
+    <br/>
+    <hr/>
+
+    <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
+        <INPUT name="command" type="submit" value="Logout">
+    </FORM>
+
+</div>
 </body>
 </html>
