@@ -11,6 +11,9 @@
 
 
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <head>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/background.css"/>
     <style>
@@ -23,9 +26,9 @@
         }
     </style>
 <body>
-
-<title>MainJSP</title>
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+<title>MainJSP</title>
+
 
     <h1> Hello, ${lastName} ${firstName}! </h1>
 
@@ -37,9 +40,10 @@
 
     <%-- Here  list-table implementation --%>
 
-    <table style="width:100%">
+    <div class="w3-container w3-center">
+    <table class="w3-table w3-striped w3-border w3-hoverable w3-center" style="width:100%">
         <thead>
-        <tr>
+        <tr class="w3-light-grey">
             <th>Card Number</th>
             <th>Summ</th>
             <th>Currency</th>
@@ -73,11 +77,8 @@
         </c:forEach>
         </tbody>
     </table>
-
-    <br/>
-    <hr/>
-
-    <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
+</div>
+       <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
         <INPUT name="command" type="submit" value="Logout">
     </FORM>
 
