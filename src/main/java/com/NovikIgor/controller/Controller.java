@@ -25,6 +25,7 @@ import java.util.Locale;
 
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
+    public static final String PARAM_COMMAND="command";
     private static final long serialVersionUID = -4051736549894026861L;
 
     private static Logger logger = Logger.getLogger(Controller.class);
@@ -34,34 +35,10 @@ public class Controller extends HttpServlet {
                           HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("loc", Locale.getDefault());
         logger.info("Request came to the doPost methode and go to the processRequest");
-        String com = req.getParameter("command");
+        String com = req.getParameter(PARAM_COMMAND);
         logger.info("command in request="+com);
         processRequest(req, resp);
 
-       /* String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        User user = null;
-
-
-        UserManagementDAO session = new UserManagmentDAOimpl();
-        try {
-            user = session.getUsersByLogin(login);
-        } catch (UserNotFoundException e) {
-            e.printStackTrace();
-        }
-        logger.info("User by login returned form DAO");
-
-        logger.info("authorisation information from Attribute login=" + login + "Attribute password=%s" + password);
-        HttpSession session1 = req.getSession();
-        if (user != null && login.equals(user.getLogin()) && password.equals(user.getPassword())) {
-            session1.setAttribute("role", ClientType.CLIENT);
-            req.getRequestDispatcher("/main.jsp").forward(req, resp);
-            logger.info("authorisation of user %s from index.jsp" + user.getLogin());
-        } else {
-            session1.setAttribute("role", ClientType.GUEST);
-            req.getRequestDispatcher("/loginError.jsp").forward(req, resp);
-            logger.info("go to loginError.jsp from authorisation mechanism");
-        }*/
     }
 
 
