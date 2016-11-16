@@ -17,9 +17,9 @@ import java.util.List;
 public class CardManagmentDAOimpl implements CardManagementDAO {
 
     private static final String SQL_SELECT_ALL_CARDS = "SELECT * FROM InternetBanking.Cards";
-    private static final String SQL_SELECT_ALL_CARDS_MAIN_INFO = "SELECT cardNumber,summ,Users_login,currencyName FROM InternetBanking.Cards INNER JOIN Currencies ON Currencies_idCurrency=Currencies.idCurrency";
-    private static final String SQL_SELECT_CARDS_BY_LOGIN = "SELECT cardNumber,summ,Users_login,currencyName FROM InternetBanking.Cards INNER JOIN Currencies ON Currencies_idCurrency=Currencies.idCurrency WHERE Cards.Users_login=?";
-    private static final String SQL_SELECT_CARDS_BY_CARDID ="SELECT cardNumber,summ,Users_login,currencyName FROM InternetBanking.Cards INNER JOIN Currencies ON Currencies_idCurrency=Currencies.idCurrency WHERE Cards.cardNumber=?";
+    private static final String SQL_SELECT_ALL_CARDS_MAIN_INFO = "SELECT cardNumber,summ,Users_login,currencyName FROM InternetBanking.Cards INNER JOIN Currencies ON Currencies_currencyName=Currencies.currencyName";
+    private static final String SQL_SELECT_CARDS_BY_LOGIN = "SELECT cardNumber,summ,Users_login,currencyName FROM InternetBanking.Cards INNER JOIN Currencies ON Currencies_currencyName=Currencies.currencyName WHERE Cards.Users_login=?";
+    private static final String SQL_SELECT_CARDS_BY_CARDID ="SELECT cardNumber,summ,Users_login,currencyName FROM InternetBanking.Cards INNER JOIN Currencies ON Currencies_currencyName=Currencies.currencyName WHERE Cards.cardNumber=?";
     private static final String SQL_CHECK_CARD_IN_DB ="SELECT * FROM InternetBanking.Cards WHERE cardNumber=?";
     private static final String SQL_EDIT_CART_SUM = "UPDATE `InternetBanking`.`Cards` SET `summ`=? WHERE `cardNumber`=?";
 
@@ -27,6 +27,7 @@ public class CardManagmentDAOimpl implements CardManagementDAO {
 
 
     public List<Card> getAllCards() {
+        logger.info("Try to get All Cards from DB");
         Connection conn = null;
         PreparedStatement state = null;
         //TODO: change here to ConcurentLinkedQueue<Card> implementation?
@@ -40,7 +41,7 @@ public class CardManagmentDAOimpl implements CardManagementDAO {
             while (resultSet.next()) {
                 Card card = new Card();
                 card.setCardNumber(resultSet.getInt(1));
-                card.setSum(resultSet.getInt(2));
+                card.setSum(resultSet.getBigDecimal(2));
                 card.setUser(resultSet.getString(3));
                 card.setCurrency(resultSet.getString(4));
                 allCards.add(card);
@@ -59,6 +60,7 @@ public class CardManagmentDAOimpl implements CardManagementDAO {
     }
 
     public List<Card> getCardsByLogin(String login) {
+        logger.info("Try to get Card by login=" + login + " Cards from DB");
         Connection conn = null;
         PreparedStatement state = null;
         List<Card> allCards = new ArrayList<Card>();
@@ -72,12 +74,13 @@ public class CardManagmentDAOimpl implements CardManagementDAO {
             while (resultSet.next()) {
                 Card card = new Card();
                 card.setCardNumber(resultSet.getInt(1));
-                card.setSum(resultSet.getInt(2));
+                card.setSum(resultSet.getBigDecimal(2));
                 card.setUser(resultSet.getString(3));
                 card.setCurrency(resultSet.getString(4));
                 allCards.add(card);
             }
         } catch (SQLException e) {
+            logger.error("sql crashed during the selection by user", e);
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -103,7 +106,7 @@ public class CardManagmentDAOimpl implements CardManagementDAO {
             while (resultSet.next()) {
                 card = new Card();
                 card.setCardNumber(resultSet.getInt(1));
-                card.setSum(resultSet.getInt(2));
+                card.setSum(resultSet.getBigDecimal(2));
                 card.setUser(resultSet.getString(3));
                 card.setCurrency(resultSet.getString(4));
                 return card;
@@ -143,7 +146,7 @@ public class CardManagmentDAOimpl implements CardManagementDAO {
     public boolean editCartSum(Card card, Connection connection) throws SQLException {
         PreparedStatement state = null;
         state = connection.prepareStatement(SQL_EDIT_CART_SUM);
-        state.setInt(1,card.getSum());
+        state.setBigDecimal(1,card.getSum());
         state.setInt(2,card.getCardNumber());
         return state.execute();
     }

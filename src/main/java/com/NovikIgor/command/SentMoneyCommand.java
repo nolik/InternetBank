@@ -10,6 +10,7 @@ import com.NovikIgor.recourceManagment.MessageManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -38,7 +39,7 @@ public class SentMoneyCommand implements ActionCommand {
 
         int recipientCartID = Integer.valueOf(request.getParameter(PARAM_RECIPIENT_CART));
 
-        int operationSum = Integer.valueOf(request.getParameter(PARAM_OPERATION_SUM));
+        BigDecimal operationSum = BigDecimal.valueOf(Long.parseLong(request.getParameter(PARAM_OPERATION_SUM)));
         logger.info("parcel all to execute method in sentMoney command");
 
         //checking does we have the curd with number from form in DB>?
@@ -54,13 +55,19 @@ public class SentMoneyCommand implements ActionCommand {
         logger.info("load operatingCard from session" + operatingCard);
 
         //here will be checked operation sum (if available money not enough money.
-        if (operationSum > operatingCard.getSum()) {
-            request.setAttribute("notEnoughMoney", MessageManager.getProperty(MessageManager.getProperty("message.notEnoughMoney")));
+        if (operationSum.compareTo(operatingCard.getSum()) < 1) {
+            logger.info("not enough money on the card, operation sum=" + operationSum + " sum on the card=" + operatingCard.getSum());
+            //TODO:bugFix with java.util.MissingResourceException: Can't find resource for bundle java.util.PropertyResourceBundle, key Not enough Money on the bill.
+            //  request.setAttribute("notEnoughMoney", MessageManager.getProperty(MessageManager.getProperty("message.notEnoughMoney")));
+            request.setAttribute("notEnoughMoney", "not enough money on the bill.");
             return page;
         }
 
-        if (operationSum <= 0) {
-            request.setAttribute("wrongSum", MessageManager.getProperty(MessageManager.getProperty("message.wrongSum")));
+        if (operationSum.compareTo(new BigDecimal(0)) == 0) {
+            logger.info("operation sum=" + operationSum);
+            //TODO:bugFix with java.util.MissingResourceException: Can't find resource for bundle java.util.PropertyResourceBundle,
+            // request.setAttribute("wrongSum", MessageManager.getProperty(MessageManager.getProperty("message.wrongSum")));
+            request.setAttribute("wrongSum", "you write wrong sum, please try once again.");
             return page;
         }
 
@@ -78,7 +85,7 @@ public class SentMoneyCommand implements ActionCommand {
     }
 
 
-    private boolean doTransaction(int operationSum) {
+    private boolean doTransaction(BigDecimal operationSum) {
         TransactionConnectionWrapper transConWrapper = new TransactionConnectionWrapper();
 
 
@@ -88,8 +95,8 @@ public class SentMoneyCommand implements ActionCommand {
             Connection connectionFromWrapper = transConWrapper.getConnectionWrapper();
             transConWrapper.begin();
 
-            operatingCard.setSum(operatingCard.getSum() - operationSum);
-            recipientCart.setSum(recipientCart.getSum() + operationSum);
+            operatingCard.setSum(operatingCard.getSum().divide(operationSum));
+            recipientCart.setSum(recipientCart.getSum().add(operationSum));
 
             Transaction transaction = new Transaction();
 

@@ -1,11 +1,13 @@
 package com.NovikIgor.dto;
 
+import java.math.BigDecimal;
+
 /**
  * Created by nolik on 23.10.16.
  */
 public class Card {
     private int cardNumber;
-    private int sum;
+    private BigDecimal sum;
     private String user;
     private String currency;
 
@@ -17,11 +19,11 @@ public class Card {
         this.cardNumber = cardNumber;
     }
 
-    public int getSum() {
+    public BigDecimal getSum() {
         return sum;
     }
 
-    public void setSum(int sum) {
+    public void setSum(BigDecimal sum) {
         this.sum = sum;
     }
 

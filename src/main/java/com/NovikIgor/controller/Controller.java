@@ -45,7 +45,8 @@ public class Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/jsp/index.jsp").forward(req, resp);
+     //   req.getRequestDispatcher("/jsp/index.jsp").forward(req, resp);
+        resp.sendRedirect(ConfigurationManager.getProperty("path.page.index"));
         logger.info("doGet to index.jsp");
     }
 

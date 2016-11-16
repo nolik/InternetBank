@@ -1,5 +1,6 @@
 package com.NovikIgor.dto;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
@@ -8,7 +9,7 @@ import java.sql.Timestamp;
 public class Transaction {
     private int transactionID;
     private String operation;
-    private int sumOfOperation;
+    private BigDecimal sumOfOperation;
     private int cardNumber;
     private String usersLogin;
     private Timestamp transactionTime;
@@ -48,11 +49,11 @@ public class Transaction {
         this.operation = operation;
     }
 
-    public int getSumOfOperation() {
+    public BigDecimal getSumOfOperation() {
         return sumOfOperation;
     }
 
-    public void setSumOfOperation(int sumOfOperation) {
+    public void setSumOfOperation(BigDecimal sumOfOperation) {
         this.sumOfOperation = sumOfOperation;
     }
 

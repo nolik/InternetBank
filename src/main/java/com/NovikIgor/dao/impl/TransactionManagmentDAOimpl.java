@@ -25,7 +25,7 @@ public class TransactionManagmentDAOimpl implements TransactionManagmentDAO {
         PreparedStatement state = connection.prepareStatement(SQL_CREATE_TRANSACTION);
         // state.setInt(1,transaction.getTransactionID());
         state.setString(1, transaction.getOperation());
-        state.setInt(2, transaction.getSumOfOperation());
+        state.setBigDecimal(2, transaction.getSumOfOperation());
         state.setInt(3, transaction.getCardNumber());
         state.setString(4, transaction.getUsersLogin());
 
@@ -53,7 +53,7 @@ public class TransactionManagmentDAOimpl implements TransactionManagmentDAO {
                 Transaction transaction = new Transaction();
                 transaction.setTransactionID(resultSet.getInt(1));
                 transaction.setOperation(resultSet.getString(2));
-                transaction.setSumOfOperation(resultSet.getInt(3));
+                transaction.setSumOfOperation(resultSet.getBigDecimal(3));
                 transaction.setCardNumber(resultSet.getInt(4));
                 transaction.setUsersLogin(resultSet.getString(5));
                 transaction.setTransactionTime(resultSet.getTimestamp(6));

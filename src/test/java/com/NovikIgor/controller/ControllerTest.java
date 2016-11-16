@@ -1,5 +1,6 @@
 package com.NovikIgor.controller;
 
+import com.NovikIgor.recourceManagment.ConfigurationManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -28,7 +29,7 @@ public class ControllerTest {
         controller.doGet(request,response);
 
         //check
-//       Mockito.verify(request).getRequestDispatcher("/jsp/index.jsp").forward(request,response);
+ //  Mockito.verify(request).getRequestDispatcher("/jsp/index.jsp").forward(request,response);
+        Mockito.verify(response).sendRedirect(ConfigurationManager.getProperty("path.page.index"));
     }
-
 }
