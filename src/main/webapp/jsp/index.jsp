@@ -96,7 +96,7 @@
     <div class="w3-display-bottomleft w3-padding-large">
         Developed by <a href="https://github.com/nolik" target="_blank">Nolik</a>
     </div>
-    <div class="w3-display-bottomright w3-padding-large w3-xlarge">
+    <div class="w3-display-bottomright w3-padding-large w3-small">
         Current time:
         <jsp:useBean id="gc" class="java.util.GregorianCalendar"/>
         <jsp:getProperty name="gc" property="time"/>
