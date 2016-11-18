@@ -95,7 +95,7 @@ public class SentMoneyCommand implements ActionCommand {
             Connection connectionFromWrapper = transConWrapper.getConnectionWrapper();
             transConWrapper.begin();
 
-            operatingCard.setSum(operatingCard.getSum().divide(operationSum));
+            operatingCard.setSum(operatingCard.getSum().subtract(operationSum));
             recipientCart.setSum(recipientCart.getSum().add(operationSum));
 
             Transaction transaction = new Transaction();
