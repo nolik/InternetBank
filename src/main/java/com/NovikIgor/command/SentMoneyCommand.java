@@ -55,7 +55,7 @@ public class SentMoneyCommand implements ActionCommand {
         logger.info("load operatingCard from session" + operatingCard);
 
         //here will be checked operation sum (if available money not enough money.
-        if (operationSum.compareTo(operatingCard.getSum()) < 1) {
+        if (operationSum.compareTo(operatingCard.getSum()) == 1) {
             logger.info("not enough money on the card, operation sum=" + operationSum + " sum on the card=" + operatingCard.getSum());
             //TODO:bugFix with java.util.MissingResourceException: Can't find resource for bundle java.util.PropertyResourceBundle, key Not enough Money on the bill.
             //  request.setAttribute("notEnoughMoney", MessageManager.getProperty(MessageManager.getProperty("message.notEnoughMoney")));
