@@ -10,9 +10,11 @@ import com.NovikIgor.recourceManagment.MessageManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by nolik on 31.10.16.
@@ -22,6 +24,7 @@ public class SentMoneyCommand implements ActionCommand {
     private static final String PARAM_RECIPIENT_CART = "recipientCart";
     private static final String PARAM_OPERATION_SUM = "sumOfOperation";
     private static final String ATTR_USER_CARDS = "cards";
+    private static final String ATTR_LOGIN = "login";
 
     private static Logger logger = Logger.getLogger(SentMoneyCommand.class);
 
@@ -75,11 +78,15 @@ public class SentMoneyCommand implements ActionCommand {
         //Transaction of sending sum from operating cart to rhe recipient cart
         // better do separately method
         //TODO: realise here logic of Transaction with sending money!
-        if (doTransaction(operationSum))
+        if (doTransaction(operationSum)) {
             page = ConfigurationManager.getProperty("path.page.successful");
 
-        //   request.setAttribute(ATTR_USER_CARDS, userCards);
-
+            //below we overwrite the cardLit (because some money will be transfer)
+            HttpSession session = request.getSession();
+            CardManagmentDAOimpl cardManager = new CardManagmentDAOimpl();
+            List<Card> userCards = cardManager.getCardsByLogin(String.valueOf(session.getAttribute(ATTR_LOGIN)));
+            session.setAttribute(ATTR_USER_CARDS, userCards);
+        }
 
         return page;
     }
