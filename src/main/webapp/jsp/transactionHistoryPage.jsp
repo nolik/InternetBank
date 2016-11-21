@@ -9,8 +9,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <head>
-
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/background.css"/>
     <style>
         table, th, td {
             border: 1px solid black;
@@ -24,6 +27,7 @@
     <title>TransactionHistory</title>
 </head>
 <body>
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-black">
 Here will be located transaction history from operation card.
 <%-- Here  transaction-table implementation --%>
 <br/>
@@ -52,5 +56,6 @@ Here will be located transaction history from operation card.
 <br/>
 <hr/>
 <a href="${pageContext.request.contextPath}/jsp/main.jsp">Go main page</a>
+    </div>
 </body>
 </html>

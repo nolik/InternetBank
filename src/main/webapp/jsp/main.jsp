@@ -26,7 +26,7 @@
         }
     </style>
 <body>
-<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-black">
 <title>MainJSP</title>
 
 
