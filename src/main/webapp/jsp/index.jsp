@@ -71,7 +71,7 @@
         position: absolute;
         top: 30%;
         left: 50%;
-        transform: translateY(-30%) translateX(-50%)
+        transform: translateY(-30%) translateX(-50%);
     }
 
 

@@ -35,10 +35,10 @@
             background: #182F2B;
             display: block;
             position: absolute;
-            top: 20%;
+            top: 35%;
             left: 20%;
             transform: translateY(-10%) translateX(-17%);
-            opacity: 0.7;
+            opacity: 0.9;
 
         }
 
@@ -53,12 +53,10 @@
         <hr class="w3-border-grey" style="margin:auto;width:40%">
         <p class="w3-large w3-center"><font color="black">Welcom to your bank account page!</font></p>
     </div>
-
+    <b/>
     <div class="wrapper">
 
-
-
-        <h2> Your card list: </h2>
+        <p class="w3-large w3-center"> Your card list: </p>
 
         <%-- Here  list-table implementation --%>
 
