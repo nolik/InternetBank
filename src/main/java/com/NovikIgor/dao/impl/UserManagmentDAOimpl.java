@@ -118,6 +118,9 @@ public class UserManagmentDAOimpl implements UserManagementDAO {
             logger.error("SQLExp where checkCartID", e);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionPool.close(state);
+            ConnectionPool.close(conn);
         }
 
         return haveLogin;
