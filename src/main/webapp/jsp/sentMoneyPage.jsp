@@ -50,7 +50,7 @@
     </table>
     <input type="submit" value="Sent Money">
 </form>
-<a href="${pageContext.request.contextPath}/src/main/webapp/jsp/main.jsp">Go main page</a>
+<a href="${pageContext.request.contextPath}/jsp/main.jsp">Go main page</a>
     </div>
 </body>
 </html>

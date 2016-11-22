@@ -14,8 +14,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <style>
 
-    body,h1 {font-family: "Raleway", sans-serif}
-    body, html {height: 100%}
+    body, h1 {
+        font-family: "Raleway", sans-serif
+    }
+
+    body, html {
+        height: 100%
+    }
+
     .bgimg {
         background-image: url(../images/index-background.jpg);
         min-height: 100%;
@@ -67,7 +73,6 @@
         left: 50%;
         transform: translateY(-30%) translateX(-50%)
     }
-
 
 
 </style>
