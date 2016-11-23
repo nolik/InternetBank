@@ -8,8 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="../css/w3.css">
+<link rel="stylesheet" href="../css/raleway.css">
 <head>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/background.css"/>
 </head>
