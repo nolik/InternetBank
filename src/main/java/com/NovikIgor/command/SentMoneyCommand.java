@@ -8,7 +8,11 @@ import com.NovikIgor.dto.Transaction;
 import com.NovikIgor.recourceManagment.ConfigurationManager;
 import com.NovikIgor.recourceManagment.MessageManager;
 import org.apache.log4j.Logger;
+import org.javamoney.moneta.Money;
 
+import javax.money.MonetaryAmount;
+import javax.money.convert.CurrencyConversion;
+import javax.money.convert.MonetaryConversions;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
@@ -94,6 +98,9 @@ public class SentMoneyCommand implements ActionCommand {
 
     private boolean doTransaction(BigDecimal operationSum) {
         TransactionConnectionWrapper transConWrapper = new TransactionConnectionWrapper();
+        String operationCartCurrency = operatingCard.getCurrency();
+        String recipientCartCurrency = recipientCart.getCurrency();
+        BigDecimal recipientMoneySum;
 
 
         try {
@@ -103,7 +110,18 @@ public class SentMoneyCommand implements ActionCommand {
             transConWrapper.begin();
 
             operatingCard.setSum(operatingCard.getSum().subtract(operationSum));
-            recipientCart.setSum(recipientCart.getSum().add(operationSum));
+
+            //Compare currencies of operation cards. In case of different currencies - make currency exchange.
+            if (!operationCartCurrency.equals(recipientCartCurrency)) {
+                MonetaryAmount operationMoney = Money.of(operationSum, operationCartCurrency);
+                CurrencyConversion currencyConversion = MonetaryConversions.getConversion(recipientCartCurrency, "ECB");
+                MonetaryAmount recipientMoney = operationMoney.with(currencyConversion);
+
+                recipientMoneySum = recipientMoney.getNumber().numberValue(BigDecimal.class);
+
+            } else recipientMoneySum = operationSum;
+
+            recipientCart.setSum(recipientCart.getSum().add(recipientMoneySum));
 
             Transaction transaction = new Transaction();
 
