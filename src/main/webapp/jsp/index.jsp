@@ -60,11 +60,7 @@
         height: 30px;
     }
 
-    .wrapper {
-        width: 100%;
-        height: 100vh;
-        position: relative;
-    }
+
 
     .wrapper .form {
         display: block;
@@ -72,6 +68,7 @@
         top: 30%;
         left: 50%;
         transform: translateY(-30%) translateX(-50%);
+        margin: 100px auto;
     }
 
 
