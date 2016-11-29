@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
@@ -76,7 +77,6 @@ public class LoginCommand implements ActionCommand {
             //* TODO: next step realize this in attributes. DO it multithreaded stable!!!
 
 
-
             session.setAttribute(ATTR_USER_CARDS, userCards);
 
             page = ConfigurationManager.getProperty("path.page.main");
@@ -93,7 +93,7 @@ public class LoginCommand implements ActionCommand {
 
     /**
      * Validate the password from login page with password in DB.
-     * <p> TODO: In future planing use MD5 hashing. </p>
+     * <p> Based on MD5 hashing. </p>
      *
      * @param login    login from request from login page.
      * @param password password from login form from login page.
@@ -102,9 +102,22 @@ public class LoginCommand implements ActionCommand {
 
     private boolean checkingLogin(String login, String password, User user) {
 
+        byte b[] = new byte[0];
+        String mD5passwordSumm = "";
+        try {
+            b = java.security.MessageDigest.getInstance("MD5").digest((login + ":" + password).getBytes());
+            java.math.BigInteger bi = new java.math.BigInteger(1, b);
+            mD5passwordSumm = bi.toString(16);
+            while (mD5passwordSumm.length() < 32)
+                mD5passwordSumm = "0" + mD5passwordSumm;
 
-        logger.info("User by login returned form DAO");
-        if (password.equals(user.getPassword())) return true;
-        else return false;
+            logger.info("User by login returned form DAO");
+            if (mD5passwordSumm.equals(user.getPassword())) return true;
+            else return false;
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
