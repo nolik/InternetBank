@@ -15,35 +15,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/w3.css">
 <link rel="stylesheet" href="../css/raleway.css">
-<head>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/background.css"/>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-        }
 
-        th, td {
-            text-align: center;
-        }
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/background.css"/>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
 
-        .w3-container {
-            padding: 2em 70px;
-        }
+    th, td {
+        text-align: center;
+    }
 
-        .wrapper {
-            width: 90%;
-            background: #182F2B;
-            display: block;
-            position: absolute;
-            top: 35%;
-            left: 20%;
-            transform: translateY(-10%) translateX(-17%);
-            opacity: 0.9;
+    .w3-container {
+        padding: 2em 70px;
+    }
 
-        }
+    .wrapper {
+        width: 90%;
+        background: #182F2B;
+        display: block;
+        position: absolute;
+        top: 35%;
+        left: 20%;
+        transform: translateY(-10%) translateX(-17%);
+        opacity: 0.9;
+
+    }
 
 
-    </style>
+</style>
 <body>
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-black">
