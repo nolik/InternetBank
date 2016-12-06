@@ -44,13 +44,11 @@
 
     .button-space {
         position: absolute;
-        left: 10px;
+        left: 2%;
+        bottom: 2%;
     }
 
-    .option-space {
-        position: absolute;
-        top: 10px;
-    }
+
 
 
 </style>
