@@ -42,6 +42,16 @@
 
     }
 
+    .button-space {
+        position: absolute;
+        left: 10px;
+    }
+
+    .option-space {
+        position: absolute;
+        top: 10px;
+    }
+
 
 </style>
 <body>
@@ -95,8 +105,10 @@
             </table>
             <br/>
         </div>
+
         <FORM action="${pageContext.request.contextPath}/сontroller" method="POST">
-            <INPUT name="command" type="submit" value="Logout">
+            <button class="w3-btn  button-space">Logout</button>
+            <input type="hidden" name="command" value="Logout"/>
         </FORM>
     </div>
 
