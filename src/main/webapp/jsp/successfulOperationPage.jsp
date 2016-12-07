@@ -13,6 +13,14 @@
 <head>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/background.css"/>
 </head>
+<style>
+    .button-space {
+        position: absolute;
+        left: 1%;
+        bottom: 2%;
+        color: white;
+    }
+</style>
 
 <body>
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-black">
@@ -27,8 +35,8 @@
     </p>
 
     <br/>
-    <br/>
-    <a href="${pageContext.request.contextPath}/jsp/main.jsp">Go main page</a>
+
+    <a href="${pageContext.request.contextPath}/jsp/main.jsp" class="w3-btn button-space">Main page</a>
 </div>
 </body>
 </html>

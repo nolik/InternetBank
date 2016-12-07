@@ -33,12 +33,20 @@
             background: #182F2B;
             display: block;
             position: absolute;
-            top: 20%;
+            top: 35%;
             left: 20%;
             transform: translateY(-10%) translateX(-17%);
             opacity: 0.7;
 
         }
+
+        .button-space {
+            position: absolute;
+            left: 1%;
+            bottom: 2%;
+            color: white;
+        }
+        .w3-jumbo-small{font-size:64px!important}
 
     </style>
 
@@ -46,35 +54,45 @@
 </head>
 <body>
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-black">
+
+    <div class="w3-container w3-center">
+        <h1 class="w3-jumbo-small w3-animate-top"><font color="black"> Transaction list</font></h1>
+        <hr class="w3-border-grey" style="margin:auto;width:40%">
+        <p class="w3-large w3-center"><font color="black">For bank cart: <c:out value="${operatingCartID}"/></font></p>
+
+    </div>
+    <b/>
+    <br/>
     <div class="wrapper">
-        Here will be located transaction history from operation card.
         <%-- Here  transaction-table implementation --%>
-        <br/>
-        <table style="width:100%">
-            <thead>
-            <tr>
-                <th>Transaction ID</th>
-                <th>Operation</th>
-                <th>Sum Of Operation</th>
-                <th>Transaction Time</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="w3-container w3-center">
 
-            <c:forEach items="${transactionList}" var="transaction">
+
+            <table class="w3-gray w3-border w3-hoverable w3-centerw3-gray" style="width:100%">
+                <thead>
                 <tr>
-                    <td><c:out value="${transaction.transactionID}"/></td>
-                    <td><c:out value="${transaction.operation}"/></td>
-                    <td><c:out value="${transaction.sumOfOperation}"/></td>
-                    <td><c:out value="${transaction.transactionTime}"/></td>
+                    <th>Transaction ID</th>
+                    <th>Operation</th>
+                    <th>Sum Of Operation</th>
+                    <th>Transaction Time</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
 
+                <c:forEach items="${transactionList}" var="transaction">
+                    <tr>
+                        <td><c:out value="${transaction.transactionID}"/></td>
+                        <td><c:out value="${transaction.operation}"/></td>
+                        <td><c:out value="${transaction.sumOfOperation}"/></td>
+                        <td><c:out value="${transaction.transactionTime}"/></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <br/>
+        </div>
         <br/>
-        <hr/>
-        <a href="${pageContext.request.contextPath}/jsp/main.jsp">Go main page</a
+        <a href="${pageContext.request.contextPath}/jsp/main.jsp" class="w3-btn button-space">Main page</a
     </div>
 </div>
 </body>

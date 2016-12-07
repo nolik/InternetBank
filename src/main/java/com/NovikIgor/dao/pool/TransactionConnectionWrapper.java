@@ -8,6 +8,8 @@ import java.sql.SQLException;
  * TODO: rewrite it base on DAO Manager: http://tutorials.jenkov.com/java-persistence/dao-manager.html
  * This can be solved using Spring Framework!
  *
+ * Connection on this wrapper use TRANSACTION_SERIALIZABLE  level of isolation.
+ *
  * Created by nolik on 04.11.16.
  */
 public class TransactionConnectionWrapper extends ConnectionPool{
@@ -16,6 +18,7 @@ public class TransactionConnectionWrapper extends ConnectionPool{
 
     public void init() throws SQLException, ClassNotFoundException {
         this.connection = ConnectionPool.getConnection();
+        this.connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
     }
 
     public void begin() throws SQLException {

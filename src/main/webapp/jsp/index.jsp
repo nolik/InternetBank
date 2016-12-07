@@ -96,7 +96,7 @@
         </form>
     </div>
     <div class="w3-display-bottomleft w3-padding-large">
-        Developed by <a href="https://github.com/nolik" target="_blank">Nolik</a>
+        Developed by <a href="https://github.com/nolik" target="_blank">Igor Novik</a>
     </div>
     <div class="w3-display-bottomright w3-padding-large w3-small">
         Current time:

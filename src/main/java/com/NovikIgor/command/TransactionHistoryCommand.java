@@ -22,7 +22,8 @@ public class TransactionHistoryCommand implements ActionCommand {
         TransactionManagmentDAO transactionManagmentDAO = new TransactionManagmentDAOimpl();
         operatingCartID = Integer.valueOf(request.getParameter(OPERATING_CART_ID));
         transactionList = transactionManagmentDAO.getTransactionsByCardID(operatingCartID);
-        request.getSession().setAttribute(ATR_TRANSACTION_LIST,transactionList);
+        request.setAttribute(ATR_TRANSACTION_LIST,transactionList);
+        request.setAttribute(OPERATING_CART_ID,operatingCartID);
 
         page = ConfigurationManager.getProperty("path.page.transactionHistory");
 

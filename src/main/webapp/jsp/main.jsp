@@ -44,9 +44,10 @@
 
     .button-space {
         position: absolute;
-        left: 2%;
+        left: 1%;
         bottom: 2%;
     }
+
 
 
 
@@ -70,7 +71,7 @@
 
         <div class="w3-container w3-center">
 
-            <table class="w3-striped w3-border w3-hoverable w3-center" style="width:100%">
+            <table class="w3-gray w3-border w3-hoverable w3-center" style="width:100%">
                 <thead>
                 <tr class="w3-light-grey">
                     <th>Card Number</th>
