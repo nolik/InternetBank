@@ -20,15 +20,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import static com.NovikIgor.recourceManagment.ProjectConstants.*;
+
 /**
  * Created by nolik on 31.10.16.
  */
 public class SentMoneyCommand implements ActionCommand {
-    private static final String OPERATING_CART = "operatingCart";
-    private static final String PARAM_RECIPIENT_CART = "recipientCart";
-    private static final String PARAM_OPERATION_SUM = "sumOfOperation";
-    private static final String ATTR_USER_CARDS = "cards";
-    private static final String ATTR_LOGIN = "login";
+
 
     private static Logger logger = Logger.getLogger(SentMoneyCommand.class);
 
@@ -56,7 +54,7 @@ public class SentMoneyCommand implements ActionCommand {
             return page;
         }
 
-        operatingCard = (Card) request.getSession().getAttribute(OPERATING_CART);
+        operatingCard = (Card) request.getSession().getAttribute(ATR_OPERATING_CART);
         recipientCart = cardManager.getCardByCardID(recipientCartID);
 
         logger.info("load operatingCard from session" + operatingCard);

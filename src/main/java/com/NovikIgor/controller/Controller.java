@@ -17,6 +17,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Locale;
 
+import static com.NovikIgor.recourceManagment.ProjectConstants.PARAM_COMMAND;
+
 /**
  * This is controllerServlet class for MVC model of InternetBanking.
  * <p>
@@ -25,7 +27,7 @@ import java.util.Locale;
 
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
-    public static final String PARAM_COMMAND="command";
+
     private static final long serialVersionUID = -4051736549894026861L;
 
     private static Logger logger = Logger.getLogger(Controller.class);

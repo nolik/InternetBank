@@ -8,22 +8,23 @@ import com.NovikIgor.recourceManagment.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static com.NovikIgor.recourceManagment.ProjectConstants.ATR_TRANSACTION_LIST;
+import static com.NovikIgor.recourceManagment.ProjectConstants.PARAM_OPERATING_CART_ID;
+
 /**
  * Created by Novik Igor on 07.11.2016.
  */
 public class TransactionHistoryCommand implements ActionCommand {
-    private static final String OPERATING_CART_ID = "operatingCartID";
-    private static final String ATR_TRANSACTION_LIST="transactionList";
-    private int operatingCartID;
+      private int operatingCartID;
     private String page;
     private List<Transaction> transactionList = null;
 
     public String execute(HttpServletRequest request) {
         TransactionManagmentDAO transactionManagmentDAO = new TransactionManagmentDAOimpl();
-        operatingCartID = Integer.valueOf(request.getParameter(OPERATING_CART_ID));
+        operatingCartID = Integer.valueOf(request.getParameter(PARAM_OPERATING_CART_ID));
         transactionList = transactionManagmentDAO.getTransactionsByCardID(operatingCartID);
         request.setAttribute(ATR_TRANSACTION_LIST,transactionList);
-        request.setAttribute(OPERATING_CART_ID,operatingCartID);
+        request.setAttribute(PARAM_OPERATING_CART_ID,operatingCartID);
 
         page = ConfigurationManager.getProperty("path.page.transactionHistory");
 

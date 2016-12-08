@@ -15,14 +15,16 @@ import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import static com.NovikIgor.recourceManagment.ProjectConstants.ATTR_USER_CARDS;
+import static com.NovikIgor.recourceManagment.ProjectConstants.LOGIN;
+import static com.NovikIgor.recourceManagment.ProjectConstants.PASSWORD;
+
 /**
  * Command class responsible for Login from login page.
  * <p>LoginCommand command implementation of Command patter.</p>
  */
 public class LoginCommand implements ActionCommand {
-    private static final String LOGIN = "login";
-    private static final String PASSWORD = "password";
-    private static final String ATTR_USER_CARDS = "cards";
+
     private UserManagmentDAOimpl userManager;
     private CardManagmentDAOimpl cardManager;
     User user = null;
