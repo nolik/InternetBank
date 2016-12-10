@@ -6,7 +6,7 @@ package com.NovikIgor.recourceManagment;
  * Created by nolik on 22.11.16.
  */
 public class ProjectConstants {
-    
+
     public static final String PARAM_COMMAND="command";
 
     public static final String PARAM_OPERATING_CART_ID = "operatingCartID";
