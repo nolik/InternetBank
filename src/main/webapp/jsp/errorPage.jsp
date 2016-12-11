@@ -28,6 +28,9 @@
         left: 20%;
         transform: translateY(-10%) translateX(-17%);
         opacity: 0.9;
+        color: white;
+        border-radius: 5px;
+        border: 2px solid #000;
 
     }
 </style>

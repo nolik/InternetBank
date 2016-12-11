@@ -69,6 +69,9 @@
         left: 50%;
         transform: translateY(-30%) translateX(-50%);
         margin: 100px auto;
+        color: white;
+        border-radius: 5px;
+        border: 2px solid #000;
     }
 
 

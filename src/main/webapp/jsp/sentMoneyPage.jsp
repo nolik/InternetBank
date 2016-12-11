@@ -34,6 +34,9 @@
             opacity: 0.9;
             transform: translateY(-30%) translateX(-50%);
             background: #182F2B;
+            color: white;
+            border-radius: 5px;
+            border: 2px solid #000;
         }
 
         .w3-jumbo-custom {
