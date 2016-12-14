@@ -6,6 +6,8 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * Factory for realising Command pattern.
+ *
  * Created by nolik on 29.09.16.
  */
 public class ActionFactory {

@@ -23,6 +23,10 @@ import java.util.List;
 import static com.NovikIgor.recourceManagment.ProjectConstants.*;
 
 /**
+ * Sent money command for command pattern.
+ * <p> Command realise logic for sending money from different cart. Include logic for
+ * concurrency change for different concurrences of operations.</p>
+ *
  * Created by nolik on 31.10.16.
  */
 public class SentMoneyCommand implements ActionCommand {

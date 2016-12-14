@@ -1,6 +1,8 @@
 package com.NovikIgor.command;
 
 /**
+ * ENUM of existing command for command factory.
+ *
  * Created by nolik on 29.09.16.
  */
 public enum CommandEnum {

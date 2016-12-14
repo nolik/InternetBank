@@ -5,6 +5,8 @@ package com.NovikIgor.command;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * Empty command that send request to index page.
+ *
  * Created by nolik on 29.09.16.
  */
 public class EmptyCommand implements ActionCommand {
