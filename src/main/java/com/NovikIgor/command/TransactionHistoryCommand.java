@@ -12,7 +12,8 @@ import static com.NovikIgor.recourceManagment.ProjectConstants.ATR_TRANSACTION_L
 import static com.NovikIgor.recourceManagment.ProjectConstants.PARAM_OPERATING_CART_ID;
 
 /**
- * Command that realise command for view history of all transactions belong to this cart.
+ * Command that realise command pattern for view history of all transactions belong to this cart.
+ *
  *
  * Created by Novik Igor on 07.11.2016.
  */
