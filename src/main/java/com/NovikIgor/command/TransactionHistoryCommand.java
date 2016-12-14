@@ -13,7 +13,7 @@ import static com.NovikIgor.recourceManagment.ProjectConstants.PARAM_OPERATING_C
 
 /**
  * Command that realise command for view history of all transactions belong to this cart.
- * 
+ *
  * Created by Novik Igor on 07.11.2016.
  */
 public class TransactionHistoryCommand implements ActionCommand {
