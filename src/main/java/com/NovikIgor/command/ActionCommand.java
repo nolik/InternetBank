@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 public interface ActionCommand {
 
     /**
-     *  This method it's execute method in Command pattern, that
+     *  This method - execute method in Command pattern, that
      *  implemented in different commands.
      *
      * @param request
