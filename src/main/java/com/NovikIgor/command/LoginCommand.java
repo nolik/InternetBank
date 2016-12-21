@@ -71,7 +71,7 @@ public class LoginCommand implements ActionCommand {
                 return ConfigurationManager.getProperty("path.page.admin");
             }
 
-            //for all others
+            //for all others (Typically must be USER)
             session.setAttribute("role", role);
             session.setAttribute("firstName", user.getFirstName());
             session.setAttribute("lastName", user.getLastName());
